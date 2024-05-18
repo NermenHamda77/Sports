@@ -17,6 +17,9 @@
 		C4171F592BF8CAC100313062 /* SportsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F582BF8CAC100313062 /* SportsAppTests.swift */; };
 		C4171F632BF8CAC200313062 /* SportsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F622BF8CAC200313062 /* SportsAppUITests.swift */; };
 		C4171F652BF8CAC200313062 /* SportsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F642BF8CAC200313062 /* SportsAppUITestsLaunchTests.swift */; };
+		C4171F732BF8CAEB00313062 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4171F722BF8CAEB00313062 /* SDWebImage */; };
+		C4171F762BF8CB0400313062 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C4171F752BF8CB0400313062 /* Reachability */; };
+		C4171F792BF8CB3F00313062 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4171F782BF8CB3F00313062 /* Main2.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,7 @@
 		C4171F5E2BF8CAC200313062 /* SportsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4171F622BF8CAC200313062 /* SportsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITests.swift; sourceTree = "<group>"; };
 		C4171F642BF8CAC200313062 /* SportsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C4171F782BF8CB3F00313062 /* Main2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4171F732BF8CAEB00313062 /* SDWebImage in Frameworks */,
+				C4171F762BF8CB0400313062 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,12 +107,14 @@
 		C4171F3D2BF8CAC000313062 /* SportsApp */ = {
 			isa = PBXGroup;
 			children = (
+				C4171F7C2BF8CB6800313062 /* modules */,
+				C4171F7B2BF8CB5A00313062 /* network */,
+				C4171F7A2BF8CB4C00313062 /* model */,
+				C4171F772BF8CB1D00313062 /* view */,
 				C4171F3E2BF8CAC000313062 /* AppDelegate.swift */,
 				C4171F402BF8CAC000313062 /* SceneDelegate.swift */,
 				C4171F422BF8CAC000313062 /* ViewController.swift */,
-				C4171F442BF8CAC000313062 /* Main.storyboard */,
 				C4171F4A2BF8CAC100313062 /* Assets.xcassets */,
-				C4171F4C2BF8CAC100313062 /* LaunchScreen.storyboard */,
 				C4171F4F2BF8CAC100313062 /* Info.plist */,
 				C4171F472BF8CAC000313062 /* SportsApp.xcdatamodeld */,
 			);
@@ -130,6 +138,77 @@
 			path = SportsAppUITests;
 			sourceTree = "<group>";
 		};
+		C4171F772BF8CB1D00313062 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				C4171F4C2BF8CAC100313062 /* LaunchScreen.storyboard */,
+				C4171F442BF8CAC000313062 /* Main.storyboard */,
+				C4171F782BF8CB3F00313062 /* Main2.storyboard */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		C4171F7A2BF8CB4C00313062 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C4171F7B2BF8CB5A00313062 /* network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		C4171F7C2BF8CB6800313062 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				C4171F812BF8CC8A00313062 /* leagueDetails */,
+				C4171F802BF8CB9E00313062 /* favourites */,
+				C4171F7F2BF8CB8800313062 /* legue */,
+				C4171F7E2BF8CB8000313062 /* home */,
+				C4171F7D2BF8CB7600313062 /* details */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		C4171F7D2BF8CB7600313062 /* details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = details;
+			sourceTree = "<group>";
+		};
+		C4171F7E2BF8CB8000313062 /* home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		C4171F7F2BF8CB8800313062 /* legue */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = legue;
+			sourceTree = "<group>";
+		};
+		C4171F802BF8CB9E00313062 /* favourites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = favourites;
+			sourceTree = "<group>";
+		};
+		C4171F812BF8CC8A00313062 /* leagueDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = leagueDetails;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +225,10 @@
 			dependencies = (
 			);
 			name = SportsApp;
+			packageProductDependencies = (
+				C4171F722BF8CAEB00313062 /* SDWebImage */,
+				C4171F752BF8CB0400313062 /* Reachability */,
+			);
 			productName = SportsApp;
 			productReference = C4171F3B2BF8CAC000313062 /* SportsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +301,10 @@
 				Base,
 			);
 			mainGroup = C4171F322BF8CAC000313062;
+			packageReferences = (
+				C4171F712BF8CAEB00313062 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */,
+			);
 			productRefGroup = C4171F3C2BF8CAC000313062 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -236,6 +323,7 @@
 			files = (
 				C4171F4E2BF8CAC100313062 /* LaunchScreen.storyboard in Resources */,
 				C4171F4B2BF8CAC100313062 /* Assets.xcassets in Resources */,
+				C4171F792BF8CB3F00313062 /* Main2.storyboard in Resources */,
 				C4171F462BF8CAC000313062 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +688,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C4171F712BF8CAEB00313062 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4171F722BF8CAEB00313062 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4171F712BF8CAEB00313062 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		C4171F752BF8CB0400313062 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C4171F472BF8CAC000313062 /* SportsApp.xcdatamodeld */ = {
