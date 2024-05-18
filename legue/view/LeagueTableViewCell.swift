@@ -12,9 +12,12 @@ class LeagueTableViewCell: UITableViewCell {
     @IBOutlet weak var myLogo: UIImageView!
     
     @IBOutlet weak var leagueName: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,5 +25,4 @@ class LeagueTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
