@@ -48,6 +48,7 @@ class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDat
       
         leagueTableView.delegate = self
         leagueTableView.dataSource = self
+        
                     
         leaguesViewModel.bindResultToLeagueViewController = { [weak self] in
                     DispatchQueue.main.async {

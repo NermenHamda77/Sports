@@ -8,6 +8,7 @@
 import Foundation
 
 class NetworkService {
+    
     private let API_KEY = "7d631bc915fda8279666dacfd6ad0494adff0b98bee2aec6126920bbe8754073"
 
     func fetchLeaguesResult(sport: String, completionHandler: @escaping (Leagues?) -> Void) {
@@ -49,5 +50,8 @@ class NetworkService {
         }
         task.resume()
     }
+    
+    
+    
 }
 
