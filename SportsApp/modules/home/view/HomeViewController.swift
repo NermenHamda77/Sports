@@ -10,10 +10,10 @@ import UIKit
 class HomeViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     
     var sport : [Sports] = [
-    Sports(image: "Arther.jpeg", title: "Football"),
-    Sports(image: "Arther.jpeg", title: "Basketball"),
-    Sports(image: "Arther.jpeg", title: "Tennis"),
-    Sports(image: "Arther.jpeg", title: "Cricket"),
+    Sports(image: "football.jpeg", title: "Football"),
+    Sports(image: "basketball.jpeg", title: "Basketball"),
+    Sports(image: "tennis.jpeg", title: "Tennis"),
+    Sports(image: "cricket.jpg", title: "Cricket"),
     ]
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
