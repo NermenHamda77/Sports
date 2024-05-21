@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C41566A62BFBF563001ACDB3 /* TeamDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41566A52BFBF563001ACDB3 /* TeamDetailsTableViewController.swift */; };
 		C4171F3F2BF8CAC000313062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F3E2BF8CAC000313062 /* AppDelegate.swift */; };
 		C4171F412BF8CAC000313062 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F402BF8CAC000313062 /* SceneDelegate.swift */; };
 		C4171F432BF8CAC000313062 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F422BF8CAC000313062 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C41566A52BFBF563001ACDB3 /* TeamDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsTableViewController.swift; sourceTree = "<group>"; };
 		C4171F3B2BF8CAC000313062 /* SportsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4171F3E2BF8CAC000313062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4171F402BF8CAC000313062 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		C4171F7D2BF8CB7600313062 /* details */ = {
 			isa = PBXGroup;
 			children = (
+				C41566A52BFBF563001ACDB3 /* TeamDetailsTableViewController.swift */,
 			);
 			path = details;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				C4171F3F2BF8CAC000313062 /* AppDelegate.swift in Sources */,
 				C4171F492BF8CAC000313062 /* SportsApp.xcdatamodeld in Sources */,
 				C4171F412BF8CAC000313062 /* SceneDelegate.swift in Sources */,
+				C41566A62BFBF563001ACDB3 /* TeamDetailsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
