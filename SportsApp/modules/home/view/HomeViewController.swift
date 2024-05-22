@@ -33,7 +33,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCell", for: indexPath) as! HomeCollectionViewCell
         cell.sportName.text = sport[indexPath.row].title
         cell.sportImage.image = UIImage(named: sport[indexPath.row].image ?? "")
-        cell.sportImage.layer.cornerRadius = 9.0
+        cell.sportImage.layer.cornerRadius = 45.0
         cell.sportImage.layer.masksToBounds = true
 
         return cell
@@ -43,7 +43,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 370, height: 200)
+        return CGSize(width: 190, height: 200)
     }
     
     
