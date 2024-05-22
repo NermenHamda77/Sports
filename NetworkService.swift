@@ -51,7 +51,67 @@ class NetworkService {
         task.resume()
     }
     
+    func fetchFixturesResult(sport: String, leagueId: Int, completionHandler: @escaping (UpcomingMatchesResultForFootballBasketballCricket?) -> Void) {
+            let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2019-01-18&to=2023-01-18"
+            
+            print("Fetching URL: \(urlString)")
+            
+            guard let url = URL(string: urlString) else {
+                print("Invalid URL")
+                return
+            }
+            
+            let request = URLRequest(url: url)
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Network error: \(error.localizedDescription)")
+                    completionHandler(nil)
+                    return
+                }
+                
+                guard let data = data else {
+                    print("No data received")
+                    completionHandler(nil)
+                    return
+                }
+                
+                // Print raw JSON response for debugging
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("JSON Response: \(jsonString)")
+                }
+                
+                // Attempt to decode the JSON response
+                do {
+                    let result = try JSONDecoder().decode(UpcomingMatchesResultForFootballBasketballCricket.self, from: data)
+                    completionHandler(result)
+                } catch {
+                    print("Decoding error: \(error.localizedDescription)")
+                    completionHandler(nil)
+                }
+            }
+            task.resume()
+        }
     
-    
+    func fetchLiveScoreResult(sport: String, leagueId: Int, compilitionHandler: @escaping (LiveMatchesResultForFootballBasketballCricket?) -> Void) {
+            let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)/?met=Livescore&leagueId=\(leagueId)&APIkey=\(API_KEY)")
+        
+            guard let newUrl = url else {
+                return
+            }
+            let request = URLRequest(url: newUrl)
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: request){ data,response , error in
+                do{
+                    let result = try JSONDecoder().decode(LiveMatchesResultForFootballBasketballCricket.self, from: data ?? Data())
+                    compilitionHandler(result)
+                }catch let error{
+                    print("Livescore\(error.localizedDescription)")
+                    compilitionHandler(nil)
+                }
+                
+            }
+            task.resume()
+        }
 }
 
