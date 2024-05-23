@@ -20,6 +20,9 @@
 		C4171F732BF8CAEB00313062 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4171F722BF8CAEB00313062 /* SDWebImage */; };
 		C4171F762BF8CB0400313062 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C4171F752BF8CB0400313062 /* Reachability */; };
 		C4171F792BF8CB3F00313062 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4171F782BF8CB3F00313062 /* Main2.storyboard */; };
+		C4CFF0C92BFFCAB300FF7A86 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFF0C82BFFCAB300FF7A86 /* FavoriteViewController.swift */; };
+		C4CFF0D02BFFD26300FF7A86 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFF0CE2BFFD26300FF7A86 /* FavTableViewCell.swift */; };
+		C4CFF0D12BFFD26300FF7A86 /* FavTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CFF0CF2BFFD26300FF7A86 /* FavTableViewCell.xib */; };
 		C4DAD42B2BFBBCC6007D1271 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DAD42A2BFBBCC6007D1271 /* HomeViewController.swift */; };
 		C4DAD42E2BFBBD3E007D1271 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DAD42C2BFBBD3E007D1271 /* HomeCollectionViewCell.swift */; };
 		C4DAD42F2BFBBD3E007D1271 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4DAD42D2BFBBD3E007D1271 /* HomeCollectionViewCell.xib */; };
@@ -60,6 +63,9 @@
 		C4171F622BF8CAC200313062 /* SportsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITests.swift; sourceTree = "<group>"; };
 		C4171F642BF8CAC200313062 /* SportsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C4171F782BF8CB3F00313062 /* Main2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
+		C4CFF0C82BFFCAB300FF7A86 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		C4CFF0CE2BFFD26300FF7A86 /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
+		C4CFF0CF2BFFD26300FF7A86 /* FavTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavTableViewCell.xib; sourceTree = "<group>"; };
 		C4DAD42A2BFBBCC6007D1271 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C4DAD42C2BFBBD3E007D1271 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4DAD42D2BFBBD3E007D1271 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -209,6 +215,9 @@
 		C4171F802BF8CB9E00313062 /* favourites */ = {
 			isa = PBXGroup;
 			children = (
+				C4CFF0C82BFFCAB300FF7A86 /* FavoriteViewController.swift */,
+				C4CFF0CE2BFFD26300FF7A86 /* FavTableViewCell.swift */,
+				C4CFF0CF2BFFD26300FF7A86 /* FavTableViewCell.xib */,
 			);
 			path = favourites;
 			sourceTree = "<group>";
@@ -349,6 +358,7 @@
 				C4171F4B2BF8CAC100313062 /* Assets.xcassets in Resources */,
 				C4171F792BF8CB3F00313062 /* Main2.storyboard in Resources */,
 				C4171F462BF8CAC000313062 /* Main.storyboard in Resources */,
+				C4CFF0D12BFFD26300FF7A86 /* FavTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,10 +387,12 @@
 				C4171F432BF8CAC000313062 /* ViewController.swift in Sources */,
 				C4DAD4312BFBC2EC007D1271 /* Sports.swift in Sources */,
 				C4EA47112BF8DA5B0063B1C6 /* HomeTableViewCell.swift in Sources */,
+				C4CFF0C92BFFCAB300FF7A86 /* FavoriteViewController.swift in Sources */,
 				C4171F3F2BF8CAC000313062 /* AppDelegate.swift in Sources */,
 				C4171F492BF8CAC000313062 /* SportsApp.xcdatamodeld in Sources */,
 				C4171F412BF8CAC000313062 /* SceneDelegate.swift in Sources */,
 				C4DAD42B2BFBBCC6007D1271 /* HomeViewController.swift in Sources */,
+				C4CFF0D02BFFD26300FF7A86 /* FavTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
