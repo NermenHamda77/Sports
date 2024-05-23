@@ -8,7 +8,8 @@
 import UIKit
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
+    @IBOutlet weak var coachName: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamImage: UIImageView!
@@ -33,7 +34,19 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playersCell", for: indexPath) as! PlayersTableViewCell
+        cell.cellView.layer.cornerRadius = 30.0
+        cell.cellView.layer.masksToBounds = true
         
+        cell.playerImage.layer.cornerRadius = 30.0
+        cell.playerImage.layer.masksToBounds = true
+        
+        cell.cellView.layer.borderWidth = 1.0
+        cell.cellView.layer.borderColor = UIColor.black.cgColor
+               
+//        tableView.layer.borderWidth = 1.0
+//        tableView.layer.borderColor = UIColor.black.cgColor
+//        tableView.layer.cornerRadius = 30.0
+//        tableView.layer.masksToBounds = true
         return cell
     }
     

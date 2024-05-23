@@ -10,6 +10,7 @@ import UIKit
 class PlayersTableViewCell: UITableViewCell {
     @IBOutlet weak var playerName: UILabel!
     
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var playerNumber: UILabel!
     @IBOutlet weak var playerPosition: UILabel!
     @IBOutlet weak var playerImage: UIImageView!
