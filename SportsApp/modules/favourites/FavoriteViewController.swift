@@ -27,14 +27,19 @@ class FavoriteViewController: UIViewController , UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavTableViewCell
         
-        cell.favLeagueImage.layer.cornerRadius = 40.0
+        cell.favLeagueImage.layer.cornerRadius = 30.0
         cell.favLeagueImage.layer.masksToBounds = true
+        
+        cell.favView.layer.cornerRadius = 35.0
+        cell.favView.layer.masksToBounds = true
+        cell.favView.layer.borderWidth = 1.0
+        cell.favView.layer.borderColor = UIColor.blue.cgColor
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 120
         
     }
     
