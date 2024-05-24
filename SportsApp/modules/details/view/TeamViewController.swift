@@ -8,6 +8,10 @@
 import UIKit
 import SDWebImage
 
+// TeamViewController.swift
+import UIKit
+import SDWebImage
+
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var coachName: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -38,7 +42,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         // Fetch team details
-        viewModel.fetchTeamDetails(sportName: "football", teamId: "123")
+        viewModel.fetchTeamDetails(sportName: "basketball", teamId: "123")
     }
     
     func updateUI() {
@@ -49,6 +53,20 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
             teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
             teamImage.layer.cornerRadius = 50.0
             teamImage.layer.masksToBounds = true
+        }
+        
+        // Set sportImage based on backgroundImage
+        switch viewModel.backgroundImage {
+        case "football":
+            sportImage.image = UIImage(named: "football1.jpg")
+        case "basketball":
+            sportImage.image = UIImage(named: "basketball1.jpg")
+        case "cricket":
+            sportImage.image = UIImage(named: "cricket2.jpg")
+        case "tennis":
+            sportImage.image = UIImage(named: "tennis1.jpg")
+        default:
+            sportImage.image = UIImage(named: "football1.jpg")
         }
         
         tableView.reloadData()

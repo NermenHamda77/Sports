@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class TeamViewModel {
     var teamDetails: TeamDetailsResult? {
         didSet {
@@ -17,6 +16,8 @@ class TeamViewModel {
     }
     
     var updateUI: (() -> Void)?
+    
+    var backgroundImage: String = "basketball" // Default value, you can set it based on your logic
     
     func fetchTeamDetails(sportName: String, teamId: String) {
         fetchTeam(sportName: sportName, teamId: teamId) { [weak self] teamDetails in
