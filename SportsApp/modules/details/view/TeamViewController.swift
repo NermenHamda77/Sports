@@ -6,34 +6,66 @@
 //
 
 import UIKit
+import SDWebImage
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var coachName: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamImage: UIImageView!
     @IBOutlet weak var sportImage: UIImageView!
-  
+    
+    let viewModel = TeamViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // to reduce opacity
-        sportImage.alpha = 0.9
-
-
+        
+        // Set up TableView
         let nib = UINib(nibName: "PlayersTableViewCell", bundle: nil)
-               tableView.register(nib, forCellReuseIdentifier: "playersCell")
+        tableView.register(nib, forCellReuseIdentifier: "playersCell")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Set sport image opacity
+        sportImage.alpha = 0.9
+        
+        // Bind to ViewModel
+        viewModel.updateUI = { [weak self] in
+            DispatchQueue.main.async {
+                self?.updateUI()
+            }
+        }
+        
+        // Fetch team details
+        viewModel.fetchTeamDetails(sportName: "football", teamId: "123")
     }
+    
+    func updateUI() {
+        teamName.text = viewModel.teamName
+        coachName.text = viewModel.coachName
+        
+        if let url = viewModel.teamImageURL {
+            teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+            teamImage.layer.cornerRadius = 50.0
+            teamImage.layer.masksToBounds = true
+        }
+        
+        tableView.reloadData()
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return viewModel.players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playersCell", for: indexPath) as! PlayersTableViewCell
+        let player = viewModel.players[indexPath.row]
+        
         cell.cellView.layer.cornerRadius = 30.0
         cell.cellView.layer.masksToBounds = true
         
@@ -42,55 +74,20 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.cellView.layer.borderWidth = 1.0
         cell.cellView.layer.borderColor = UIColor.black.cgColor
-               
-//        tableView.layer.borderWidth = 1.0
-//        tableView.layer.borderColor = UIColor.black.cgColor
-//        tableView.layer.cornerRadius = 30.0
-//        tableView.layer.masksToBounds = true
+        
+        cell.playerName.text = player.player_name
+        cell.playerPosition.text = player.player_type ?? "No Available Data"
+        cell.playerNumber.text = player.player_number ?? "No Available Data"
+        if let imageUrl = URL(string: player.player_image ?? "") {
+            cell.playerImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeholder"))
+        } else {
+            cell.playerImage.image = UIImage(named: "placeholder")
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-
-/*
- //
- //  HomeCollectionViewCell.swift
- //  SportsApp
- //
- //  Created by Ner Meen on 20/05/2024.
- //
-
- import UIKit
-
- class HomeCollectionViewCell: UICollectionViewCell {
-     @IBOutlet weak var sportImage: UIImageView!
-     @IBOutlet weak var sportName: UILabel!
-     
-     // Add an overlay view programmatically if not done in the xib
-     var overlayView: UIView!
-     
-     override func awakeFromNib() {
-         super.awakeFromNib()
-         
-         // Initialize the overlay view
-         overlayView = UIView(frame: sportImage.bounds)
-         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5) // Adjust alpha as needed
-         overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // To resize with image view
-         sportImage.addSubview(overlayView)
-     }
- }
-
- */
