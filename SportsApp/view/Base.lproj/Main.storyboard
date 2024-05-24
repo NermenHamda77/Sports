@@ -185,7 +185,7 @@
                             <constraint firstItem="VER-gL-pCz" firstAttribute="trailing" secondItem="XuY-i0-bqY" secondAttribute="trailing" id="piM-Wu-4iI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="eHc-ru-meb"/>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="heart" catalog="system" id="eHc-ru-meb"/>
                     <connections>
                         <outlet property="tableView" destination="VER-gL-pCz" id="Cr6-PN-9Bz"/>
                     </connections>
@@ -216,8 +216,8 @@
     </scenes>
     <resources>
         <image name="1.gif" width="200" height="200"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="soccerball" catalog="system" width="128" height="123"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
