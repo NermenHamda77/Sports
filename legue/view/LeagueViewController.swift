@@ -10,15 +10,29 @@ import UIKit
 class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var leagueTableView: UITableView!
+    
+    
     private var leaguesViewModel = LeaguesViewModel()
 
     
-    @IBAction func youtube(_ sender: Any) {
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return leaguesViewModel.leaguesResult.count
     }
+
+    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Instantiate the LeagueDetailsCollectionViewController
+        guard let leagueDetailsVC = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController else {
+            return
+        }
+        
+        // Set the selected sport type and league ID in the view model
+        leaguesViewModel.selectedSportType = leaguesViewModel.leaguesResult[indexPath.row].leagueName
+        leaguesViewModel.selectedLeagueId = leaguesViewModel.leaguesResult[indexPath.row].leagueKey
+        
+        navigationController?.pushViewController(leagueDetailsVC, animated: true)
+    }*/
+
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,16 +46,16 @@ class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDat
         
         let league = leaguesViewModel.leaguesResult[indexPath.row]
         cell.leagueName.text = league.leagueName
-                
+        
         if let logoUrlString = league.leagueLogo, let logoUrl = URL(string: logoUrlString) {
-                    cell.myLogo.loadImage(from: logoUrl)
-                } else {
-                    cell.myLogo.image = UIImage(named: "t")
-                }
-                
+            cell.myLogo.loadImage(from: logoUrl)
+        } else {
+            cell.myLogo.image = UIImage(named: "t")
+        }
+        
         return cell
     }
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +64,13 @@ class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDat
         leagueTableView.dataSource = self
         
                     
-        leaguesViewModel.bindResultToLeagueViewController = { [weak self] in
+leaguesViewModel.bindResultToLeagueViewController = { [weak self] in
                     DispatchQueue.main.async {
                         self?.leagueTableView.reloadData()
                     }
                 }
                 
-                leaguesViewModel.getLeaguesResult(sportType: "football")
+    leaguesViewModel.getLeaguesResult(sportType: "tennis")
     }
     
 

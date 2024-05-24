@@ -38,7 +38,7 @@ class NetworkService {
             
             do {
                 if let jsonString = String(data: data, encoding: .utf8) {
-                    print("JSON Response: \(jsonString)")
+                    //print("JSON Response: \(jsonString)")
                 }
                 
                 let result = try JSONDecoder().decode(Leagues.self, from: data)
@@ -53,8 +53,6 @@ class NetworkService {
     
     func fetchFixturesResult(sport: String, leagueId: Int, completionHandler: @escaping (UpcomingMatchesResultForFootballBasketballCricket?) -> Void) {
             let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2019-01-18&to=2023-01-18"
-            
-            print("Fetching URL: \(urlString)")
             
             guard let url = URL(string: urlString) else {
                 print("Invalid URL")
@@ -78,10 +76,10 @@ class NetworkService {
                 
                 // Print raw JSON response for debugging
                 if let jsonString = String(data: data, encoding: .utf8) {
-                    print("JSON Response: \(jsonString)")
+                    //print("JSON Response: \(jsonString)")
                 }
                 
-                // Attempt to decode the JSON response
+                //decode the JSON response
                 do {
                     let result = try JSONDecoder().decode(UpcomingMatchesResultForFootballBasketballCricket.self, from: data)
                     completionHandler(result)
@@ -93,9 +91,37 @@ class NetworkService {
             task.resume()
         }
     
-    func fetchLiveScoreResult(sport: String, leagueId: Int, compilitionHandler: @escaping (LiveMatchesResultForFootballBasketballCricket?) -> Void) {
-            let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)/?met=Livescore&leagueId=\(leagueId)&APIkey=\(API_KEY)")
+    func fetchLiveScoreResult(sport: String, leagueId: Int, completion: @escaping (LiveMatchesResultForFootballBasketballCricket?) -> Void) {
         
+        let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2016-01-18&to=2018-01-18"
+        
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, _, error in
+            do {
+                if let data = data {
+                    let result = try JSONDecoder().decode(LiveMatchesResultForFootballBasketballCricket.self, from: data)
+                    completion(result)
+                } else {
+                    completion(nil)
+                }
+            } catch let error {
+                print("Livescore \(error.localizedDescription)")
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchTeamsResult(sport: String, leagueId: Int, compilitionHandler: @escaping (AllTeamsResult?) -> Void) {
+        
+    let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)/?met=Teams&leagueId=\(leagueId)&APIkey=\(API_KEY)")
+            
             guard let newUrl = url else {
                 return
             }
@@ -103,10 +129,10 @@ class NetworkService {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: request){ data,response , error in
                 do{
-                    let result = try JSONDecoder().decode(LiveMatchesResultForFootballBasketballCricket.self, from: data ?? Data())
+                    let result = try JSONDecoder().decode(AllTeamsResult.self, from: data ?? Data())
                     compilitionHandler(result)
                 }catch let error{
-                    print("Livescore\(error.localizedDescription)")
+                    print("Teams \(error.localizedDescription)")
                     compilitionHandler(nil)
                 }
                 

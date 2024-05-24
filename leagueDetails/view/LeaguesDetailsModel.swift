@@ -44,7 +44,7 @@ struct LiveMatchesForFootballBasketballCricketItem: Decodable {
 }
 
 
-// MARK: League Details -> Latest Results / Live Matches (for a certain sport (Tennis only) )
+/*// MARK: League Details -> Latest Results / Live Matches (for a certain sport (Tennis only) )
 
 struct LiveMatchesResultForTennis: Decodable {
     let success: Int?
@@ -55,7 +55,7 @@ struct LiveMatchesResultForTennis: Decodable {
 struct LiveMatchesForTennisItem: Decodable {
     let event_first_player, event_second_player, event_final_result, event_first_player_logo, event_second_player_logo: String?
     let event_date, event_time: String?
-}
+}*/
 
 // MARK: League Details -> Teams (for a certain sport (Football/Basketball/Cricket only) )
 
@@ -67,11 +67,12 @@ struct AllTeamsResult: Decodable {
 struct AllTeamsItem: Decodable {
     let team_key: Int?
     let team_logo: String?
+    let team_name: String?
 
 }
 
 
-// MARK: League Details -> Players (for a certain sport (Tennis only) )
+/*// MARK: League Details -> Players (for a certain sport (Tennis only) )
 
 struct AllPlayersResult: Decodable {
     let success: Int?
@@ -81,4 +82,4 @@ struct AllPlayersResult: Decodable {
 struct AllPlayersItem: Decodable {
     let player_key: Int?
     let player_image: String?
-}
+}*/

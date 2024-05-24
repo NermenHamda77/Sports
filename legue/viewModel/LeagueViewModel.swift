@@ -7,22 +7,11 @@
 
 import Foundation
 
-/*class LeaguesViewModel{
-    var bindResultToLeagueViewController : (() ->()) = {}
-    var leaguesResult : Leagues!{
-        didSet{
-            bindResultToLeagueViewController()
-        }
-    }
-    func getLeaguesResult(sportType : String){
-        NetworkService().fetchLeaguesResult(sport: sportType){(data) in
-            guard let result = data else {return}
-            self.leaguesResult = result
-        }
-    }
-}*/
-
 class LeaguesViewModel {
+    
+    var selectedSportType: String?
+    var selectedLeagueId: Int?
+
     var bindResultToLeagueViewController: (() -> Void) = {}
     var leaguesResult: [Result] = [] {
         didSet {

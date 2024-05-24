@@ -10,12 +10,15 @@ import Foundation
 
 class LeaguesDetailsViewModel{
     
+    var sportType: String?
+    var leagueId: Int?
+    
     var bindUpComingEventsToLeagueDetailsViewController : (() ->()) = {}
     var bindLatestResultsToLeagueDetailsViewController : (() ->()) = {}
     var bindCricketLatestResultsToLeagueDetailsViewController : (() ->()) = {}
     var bindTeamsToLeagueDetailsViewController : (() ->()) = {}
     
-    var upComingEvents : UpcomingMatchesResultForFootballBasketballCricket!{
+    var upComingEvents : [UpcomingMatchesForFootballBasketballCricketItem]!{
         didSet{
             bindUpComingEventsToLeagueDetailsViewController()
         }
@@ -25,12 +28,12 @@ class LeaguesDetailsViewModel{
             bindLatestResultsToLeagueDetailsViewController()
         }
     }
-    var cricketLatestResults : LiveMatchesResultForFootballBasketballCricket!{
-        didSet{
-            bindCricketLatestResultsToLeagueDetailsViewController()
-        }
-    }
-    var teams : Teams!{
+    //var LatestResults : LiveMatchesResultForFootballBasketballCricket!{
+      //  didSet{
+            //bindCricketLatestResultsToLeagueDetailsViewControll//er()
+        //}
+    //}
+    var teams : AllTeamsResult!{
         didSet{
             bindTeamsToLeagueDetailsViewController()
         }
@@ -46,8 +49,8 @@ class LeaguesDetailsViewModel{
                    print("No upcoming events data received.")
                    return
                }
-               print("Upcoming events data received: \(result)")
-               self.upComingEvents = result
+               //print("Upcoming events data received: \(result)")
+               self.upComingEvents = result.result
            }
        }
      
@@ -55,6 +58,7 @@ class LeaguesDetailsViewModel{
     func getLatestResult(sportType : String , leagueId : Int){
         network.fetchLiveScoreResult(sport: sportType, leagueId: leagueId){(data) in
             guard let result = data else {return}
+            //print("Upcoming events data received: \(result)")
             self.latestResults = result
         }
     }
@@ -64,13 +68,15 @@ class LeaguesDetailsViewModel{
         network.fetchCricketLivescoreResult(leagueId: leagueId){(data) in
             self.cricketLatestResults = data
         }
-    }
+    }*/
+    
     // Teams
     func getTeams(sportType : String , leagueId : Int){
         network.fetchTeamsResult(sport: sportType, leagueId: leagueId){(data) in
-//            guard let result = data else {return}
-            self.teams = data
+            guard let result = data else {return}
+            //print("Upcoming events data received: \(result)")
+            self.teams = result
         }
     }
-     */
+     
 }
