@@ -16,48 +16,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="354" height="184"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XnM-Mh-VU1">
-                        <rect key="frame" x="16" y="16" width="322" height="152"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arther" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-Td-X8F">
-                                <rect key="frame" x="24" y="46" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="5zy-t5-ueR"/>
-                                    <constraint firstAttribute="height" constant="60" id="mp3-XM-2TV"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egyptian" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rw-KD-Dmd">
-                                <rect key="frame" x="114" y="56" width="177" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="iAe-FP-Dvo"/>
-                                    <constraint firstAttribute="height" constant="40" id="liF-cz-fEz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.65748027259999997" green="0.72639536680000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egyptian" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rw-KD-Dmd">
+                        <rect key="frame" x="128" y="72" width="177" height="40"/>
                         <constraints>
-                            <constraint firstItem="7rw-KD-Dmd" firstAttribute="centerY" secondItem="XnM-Mh-VU1" secondAttribute="centerY" id="Rb8-wh-plk"/>
-                            <constraint firstItem="7rw-KD-Dmd" firstAttribute="leading" secondItem="gf7-Td-X8F" secondAttribute="trailing" constant="30" id="eff-Ra-geX"/>
-                            <constraint firstItem="gf7-Td-X8F" firstAttribute="leading" secondItem="XnM-Mh-VU1" secondAttribute="leading" constant="24" id="hNj-su-tru"/>
-                            <constraint firstItem="gf7-Td-X8F" firstAttribute="centerY" secondItem="XnM-Mh-VU1" secondAttribute="centerY" id="qoX-vs-IOz"/>
+                            <constraint firstAttribute="height" constant="40" id="1sm-ll-Nhp"/>
+                            <constraint firstAttribute="width" constant="177" id="blm-q2-ph0"/>
                         </constraints>
-                    </view>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arther" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-Td-X8F">
+                        <rect key="frame" x="44" y="62" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="AJd-Hn-7EN"/>
+                            <constraint firstAttribute="height" constant="60" id="z14-ES-9CN"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="XnM-Mh-VU1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="ETv-3V-4DY"/>
-                    <constraint firstItem="XnM-Mh-VU1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="HGj-s3-Byp"/>
-                    <constraint firstAttribute="trailing" secondItem="XnM-Mh-VU1" secondAttribute="trailing" constant="16" id="jw1-MC-A6R"/>
-                    <constraint firstAttribute="bottom" secondItem="XnM-Mh-VU1" secondAttribute="bottom" constant="16" id="kbZ-Hf-FpI"/>
+                    <constraint firstItem="gf7-Td-X8F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="BNb-Pr-SzV"/>
+                    <constraint firstItem="7rw-KD-Dmd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IKs-yb-AjF"/>
+                    <constraint firstItem="7rw-KD-Dmd" firstAttribute="leading" secondItem="gf7-Td-X8F" secondAttribute="trailing" constant="24" id="OcP-re-CaW"/>
+                    <constraint firstItem="gf7-Td-X8F" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qKx-vT-FLF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="favLeagueImage" destination="gf7-Td-X8F" id="4sI-IB-haX"/>
                 <outlet property="favLeagueName" destination="7rw-KD-Dmd" id="z3n-7H-ZmY"/>
-                <outlet property="favView" destination="XnM-Mh-VU1" id="jJc-J9-JK6"/>
             </connections>
             <point key="canvasLocation" x="21.374045801526716" y="38.028169014084511"/>
         </tableViewCell>
