@@ -42,7 +42,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         // Fetch team details
-        viewModel.fetchTeamDetails(sportName: "basketball", teamId: "123")
+        viewModel.fetchTeamDetails(sportName: "football", teamId: "123")
     }
     
     func updateUI() {
