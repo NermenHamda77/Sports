@@ -9,6 +9,9 @@ import UIKit
 
 class LastedCollectionViewCell: UICollectionViewCell {
     
+    
+    @IBOutlet weak var lastedDate: UILabel!
+    
     @IBOutlet weak var teamOneLogo: UIImageView!
     
     

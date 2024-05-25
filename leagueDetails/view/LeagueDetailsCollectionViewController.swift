@@ -9,20 +9,31 @@ import UIKit
 
 
 class LeagueDetailsCollectionViewController: UICollectionViewController {
+    @IBAction func addToFav(_ sender: UIButton) {
+    }
     
     var viewModel = LeaguesDetailsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        // Register the header view
+        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        
+        // Set up the section headers
+        let upcomingEventsHeader = createSectionHeader(size: .absolute(20))
+        let latestResultsHeader = createSectionHeader(size: .absolute(44))
+        let teamsHeader = createSectionHeader(size: .absolute(44))
+        
         let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
                  switch sectionIndex {
                  case 0:
-                     return self.drawTheTopSection()
+                     return self.drawTheTopSection(withHeader: upcomingEventsHeader)
                  case 1:
-                     return self.drawTheLatestResultsSection()
+                     return self.drawTheLatestResultsSection(withHeader: latestResultsHeader)
                  case 2:
-                     return self.drawTeamsSection()
+                     return self.drawTeamsSection(withHeader: teamsHeader)
                  default:
                      fatalError("Unexpected section")
                  }
@@ -61,41 +72,81 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
         
 }
 
-    func drawTheTopSection()-> NSCollectionLayoutSection{
+    func drawTheTopSection(withHeader header: NSCollectionLayoutBoundarySupplementaryItem) -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(170))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8,leading: 16 , bottom: 8, trailing: 8)
+        
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
+    
+        section.boundarySupplementaryItems = [header]
         return section
     }
     
-    func drawTheLatestResultsSection() -> NSCollectionLayoutSection {
+    func drawTheLatestResultsSection(withHeader header: NSCollectionLayoutBoundarySupplementaryItem) -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(170))
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.97), heightDimension: .absolute(170))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8)
+        
         let section = NSCollectionLayoutSection(group: group)
-        //section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
+        
+        section.boundarySupplementaryItems = [header]
         return section
     }
+
     
-    func drawTeamsSection() -> NSCollectionLayoutSection{
+    func drawTeamsSection(withHeader header: NSCollectionLayoutBoundarySupplementaryItem) -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(170))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.55), heightDimension: .absolute(170))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8)
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
+        
+        section.boundarySupplementaryItems = [header]
         return section
     }
+    
+    private func createSectionHeader(size: NSCollectionLayoutDimension) -> NSCollectionLayoutBoundarySupplementaryItem {
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: size)
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            return sectionHeader
+        }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                fatalError("Unexpected element kind")
+            }
+            
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as! SectionHeaderView
+            
+            switch indexPath.section {
+            case 0:
+                headerView.textLabel.text = "Upcoming Events"
+            case 1:
+                headerView.textLabel.text = "Latest Results"
+            case 2:
+                headerView.textLabel.text = "Teams"
+            default:
+                fatalError("Unexpected section")
+            }
+            
+            return headerView
+        }
+
+    
     /*
     // MARK: - Navigation
 
@@ -116,13 +167,24 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
+            if viewModel.upComingEvents == nil{
+                return 8
+            }else{
+                viewModel.upComingEvents.count
+            }
             return viewModel.upComingEvents?.count ?? 0
         case 1:
-           // print(viewModel.latestResults?.result?.count ?? 0)
-            return viewModel.latestResults?.result?.count ?? 0
+            if viewModel.latestResults == nil || viewModel.latestResults?.result?.isEmpty ?? true {
+                        return 8
+        } else {
+            return min(viewModel.latestResults!.result!.count, 20)
+            }
         case 2:
-            print(viewModel.teams?.result?.count)
-            return viewModel.teams?.result?.count ?? 0
+            if viewModel.teams == nil || viewModel.teams?.result?.isEmpty ?? true {
+                return 8
+            }else{
+                return viewModel.teams!.result!.count
+            }
         default:
             return 0
         }
@@ -148,11 +210,11 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
     }
 
     private func configureUpcomingEventCell(_ cell: UpComingEventCollectionViewCell, at indexPath: IndexPath) {
-        // Your existing cell configuration code for upcoming events
         if let fixture = viewModel.upComingEvents?[indexPath.row] {
             
             cell.teamOneName.text = fixture.event_home_team
             cell.teamTwoName.text = fixture.event_away_team
+            cell.upComingDate.text = fixture.event_date
 
             if let homeTeamLogoUrlString = fixture.home_team_logo, let awayTeamLogoUrlString = fixture.away_team_logo {
                 if let homeTeamLogoUrl = URL(string: homeTeamLogoUrlString), let awayTeamLogoUrl = URL(string: awayTeamLogoUrlString) {
@@ -160,23 +222,43 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
                     cell.teamTwoLogo.loadImageUp(from: awayTeamLogoUrl)
                 }
             }
-            //add border
+            // Add border
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 8.0
-
+        } else {
+            cell.teamOneName.text = "No Data"
+            cell.teamTwoName.text = "No Data"
+            cell.upComingDate.text = "!!"
+            cell.teamOneLogo.image = UIImage(named: "defultImage")
+            cell.teamTwoLogo.image = UIImage(named: "defultImage")
         }
+        // Add border
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderWidth = 1.0
+        cell.layer.cornerRadius = 8.0
+        
+        // Add shadow
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cell.layer.shadowRadius = 4
+        cell.layer.masksToBounds = false
+        
+        // Set background image
+    let backgroundImage = UIImage(named: "background7")
+    cell.backgroundColor = UIColor(patternImage: backgroundImage!)
+        
     }
 
+
     private func configureLatestResultCell(_ cell: LastedCollectionViewCell, at indexPath: IndexPath) {
-        // Your cell configuration code for latest results
         if let latestResult = viewModel.latestResults?.result?[indexPath.item] {
             
             cell.teamOneName.text = latestResult.event_home_team
-            print(cell.teamOneName.text)
             cell.teamTwoName.text = latestResult.event_away_team
             cell.score.text = latestResult.event_final_result
-            
+            cell.lastedDate.text = latestResult.event_date
             
             if let homeTeamLogoUrlString = latestResult.home_team_logo, let awayTeamLogoUrlString = latestResult.away_team_logo {
                 if let homeTeamLogoUrl = URL(string: homeTeamLogoUrlString), let awayTeamLogoUrl = URL(string: awayTeamLogoUrlString) {
@@ -184,13 +266,35 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
                     cell.teamTwoLogo.loadImageUp(from: awayTeamLogoUrl)
                 }
             }
-            //add border
-            cell.layer.borderColor = UIColor.lightGray.cgColor
-            cell.layer.borderWidth = 1.0
-            cell.layer.cornerRadius = 8.0
-
+        } else {
+            cell.teamOneName.text = "OOp! No Data"
+            cell.teamTwoName.text = "OOP! No Data"
+            cell.score.text = "!!"
+            cell.lastedDate.text = "!!"
+            cell.teamOneLogo.image = UIImage(named: "defultImage")
+            cell.teamTwoLogo.image = UIImage(named: "defultImage")
         }
+        // Add border
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderWidth = 1.0
+        cell.layer.cornerRadius = 8.0
+        
+        // Add shadow
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cell.layer.shadowRadius = 4
+        cell.layer.masksToBounds = false
+        
+    cell.contentView.backgroundColor = .clear
+        
+    cell.backgroundView = UIImageView(image: UIImage(named: "background7"))
+    cell.backgroundView?.contentMode = .scaleAspectFill
+    cell.backgroundView?.clipsToBounds = true
+    
+        
     }
+
     
     private func configureTeamsCell(_ cell: TeamsCollectionViewCell, at indexPath: IndexPath) {
         
@@ -208,6 +312,16 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 8.0
+            
+            // Add shadow
+            cell.layer.shadowColor = UIColor.black.cgColor
+            cell.layer.shadowOpacity = 0.5
+            cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+            cell.layer.shadowRadius = 4
+            cell.layer.masksToBounds = false
+            
+            let backgroundImage = UIImage(named: "background7")
+            cell.backgroundColor = UIColor(patternImage: backgroundImage!)
 
         }
     }

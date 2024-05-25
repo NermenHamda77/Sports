@@ -33,8 +33,10 @@ class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDat
         navigationController?.pushViewController(leagueDetailsVC, animated: true)
     }*/
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
+    }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueTableViewCell
         
@@ -50,8 +52,9 @@ class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDat
         if let logoUrlString = league.leagueLogo, let logoUrl = URL(string: logoUrlString) {
             cell.myLogo.loadImage(from: logoUrl)
         } else {
-            cell.myLogo.image = UIImage(named: "t")
+            cell.myLogo.image = UIImage(named: "defultImage")
         }
+        
         
         return cell
     }
@@ -62,7 +65,6 @@ class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDat
       
         leagueTableView.delegate = self
         leagueTableView.dataSource = self
-        
                     
 leaguesViewModel.bindResultToLeagueViewController = { [weak self] in
                     DispatchQueue.main.async {
@@ -70,7 +72,7 @@ leaguesViewModel.bindResultToLeagueViewController = { [weak self] in
                     }
                 }
                 
-    leaguesViewModel.getLeaguesResult(sportType: "tennis")
+    leaguesViewModel.getLeaguesResult(sportType: "football")
     }
     
 
