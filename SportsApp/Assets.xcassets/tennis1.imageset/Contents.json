@@ -1,11 +1,7 @@
 {
   "images" : [
     {
-
-      "filename" : "cricket.jpg",
-
-      "filename" : "cricket.jpeg",
-
+      "filename" : "tennis.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
