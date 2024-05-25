@@ -9,6 +9,8 @@ import UIKit
 
 
 class LeagueDetailsCollectionViewController: UICollectionViewController {
+    @IBAction func addToFav(_ sender: UIButton) {
+    }
     
     var viewModel = LeaguesDetailsViewModel()
 
