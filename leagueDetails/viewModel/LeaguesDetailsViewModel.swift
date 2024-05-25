@@ -15,24 +15,18 @@ class LeaguesDetailsViewModel{
     
     var bindUpComingEventsToLeagueDetailsViewController : (() ->()) = {}
     var bindLatestResultsToLeagueDetailsViewController : (() ->()) = {}
-    var bindCricketLatestResultsToLeagueDetailsViewController : (() ->()) = {}
     var bindTeamsToLeagueDetailsViewController : (() ->()) = {}
     
-    var upComingEvents : [UpcomingMatchesForFootballBasketballCricketItem]!{
+    var upComingEvents : [UpcomingMatchesItem]!{
         didSet{
             bindUpComingEventsToLeagueDetailsViewController()
         }
     }
-    var latestResults : LiveMatchesResultForFootballBasketballCricket!{
+    var latestResults : LiveMatchesResult!{
         didSet{
             bindLatestResultsToLeagueDetailsViewController()
         }
     }
-    //var LatestResults : LiveMatchesResultForFootballBasketballCricket!{
-      //  didSet{
-            //bindCricketLatestResultsToLeagueDetailsViewControll//er()
-        //}
-    //}
     var teams : AllTeamsResult!{
         didSet{
             bindTeamsToLeagueDetailsViewController()
@@ -62,13 +56,6 @@ class LeaguesDetailsViewModel{
             self.latestResults = result
         }
     }
-    /*
-    //Cricket latest Result
-    func getCricketLatestResult(leagueId : Int){
-        network.fetchCricketLivescoreResult(leagueId: leagueId){(data) in
-            self.cricketLatestResults = data
-        }
-    }*/
     
     // Teams
     func getTeams(sportType : String , leagueId : Int){

@@ -51,8 +51,8 @@ class NetworkService {
         task.resume()
     }
     
-    func fetchFixturesResult(sport: String, leagueId: Int, completionHandler: @escaping (UpcomingMatchesResultForFootballBasketballCricket?) -> Void) {
-            let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2019-01-18&to=2023-01-18"
+    func fetchFixturesResult(sport: String, leagueId: Int, completionHandler: @escaping (UpcomingMatchesResult?) -> Void) {
+            let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2023-12-18&to=2024-04-18"
             
             guard let url = URL(string: urlString) else {
                 print("Invalid URL")
@@ -81,7 +81,7 @@ class NetworkService {
                 
                 //decode the JSON response
                 do {
-                    let result = try JSONDecoder().decode(UpcomingMatchesResultForFootballBasketballCricket.self, from: data)
+                    let result = try JSONDecoder().decode(UpcomingMatchesResult.self, from: data)
                     completionHandler(result)
                 } catch {
                     print("Decoding error: \(error.localizedDescription)")
@@ -91,7 +91,7 @@ class NetworkService {
             task.resume()
         }
     
-    func fetchLiveScoreResult(sport: String, leagueId: Int, completion: @escaping (LiveMatchesResultForFootballBasketballCricket?) -> Void) {
+    func fetchLiveScoreResult(sport: String, leagueId: Int, completion: @escaping (LiveMatchesResult?) -> Void) {
         
         let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2016-01-18&to=2018-01-18"
         
@@ -105,7 +105,7 @@ class NetworkService {
         let task = session.dataTask(with: request) { data, _, error in
             do {
                 if let data = data {
-                    let result = try JSONDecoder().decode(LiveMatchesResultForFootballBasketballCricket.self, from: data)
+                    let result = try JSONDecoder().decode(LiveMatchesResult.self, from: data)
                     completion(result)
                 } else {
                     completion(nil)

@@ -9,6 +9,9 @@ import UIKit
 
 class UpComingEventCollectionViewCell: UICollectionViewCell {
     
+    
+    @IBOutlet weak var upComingDate: UILabel!
+    
     @IBOutlet weak var teamOneLogo: UIImageView!
     
     
