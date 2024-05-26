@@ -57,7 +57,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         // Set sportImage based on backgroundImage
-        switch viewModel.backgroundImage {
+        switch sportName {
         case "football":
             sportImage.image = UIImage(named: "football.jpg")
         case "basketball":
