@@ -52,6 +52,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
 
         cell.favLeagueImage.layer.cornerRadius = 30.0
         cell.favLeagueImage.layer.masksToBounds = true
+        
 
         return cell
     }

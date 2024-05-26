@@ -7,31 +7,30 @@
 
 import UIKit
 
-class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var leagueTableView: UITableView!
-    
+    var chosenSportName: String? // Variable to receive the chosen sport name
     
     private var leaguesViewModel = LeaguesViewModel()
 
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return leaguesViewModel.leaguesResult.count
     }
 
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Instantiate the LeagueDetailsCollectionViewController
         guard let leagueDetailsVC = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController else {
             return
         }
         
-        // Set the selected sport type and league ID in the view model
-        leaguesViewModel.selectedSportType = leaguesViewModel.leaguesResult[indexPath.row].leagueName
-        leaguesViewModel.selectedLeagueId = leaguesViewModel.leaguesResult[indexPath.row].leagueKey
+        // Set the selected sport type and league ID
+        let selectedLeague = leaguesViewModel.leaguesResult[indexPath.row]
+        leagueDetailsVC.sportName = chosenSportName
+        leagueDetailsVC.leagueId = selectedLeague.leagueKey
         
         navigationController?.pushViewController(leagueDetailsVC, animated: true)
-    }*/
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
@@ -55,27 +54,27 @@ class LeagueViewController: UIViewController, UITableViewDelegate,UITableViewDat
             cell.myLogo.image = UIImage(named: "defultImage")
         }
         
-        
         return cell
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
       
         leagueTableView.delegate = self
         leagueTableView.dataSource = self
-                    
-leaguesViewModel.bindResultToLeagueViewController = { [weak self] in
-                    DispatchQueue.main.async {
-                        self?.leagueTableView.reloadData()
-                    }
-                }
-                
-    leaguesViewModel.getLeaguesResult(sportType: "football")
-    }
-    
 
+        if let chosenSportName = chosenSportName {
+            print("Chosen Sport: \(chosenSportName)")
+        }
+        
+        leaguesViewModel.bindResultToLeagueViewController = { [weak self] in
+            DispatchQueue.main.async {
+                self?.leagueTableView.reloadData()
+            }
+        }
+        
+        leaguesViewModel.getLeaguesResult(sportType: chosenSportName ?? "football")
+    }
 }
 
 extension UIImageView {

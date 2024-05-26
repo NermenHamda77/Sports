@@ -16,7 +16,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         Sports(image: "tennis1.jpeg", title: "Tennis"),
         Sports(image: "cricket1.jpg", title: "Cricket"),
     ]
-    
+
+    var chosenSportName: String?
+
     @IBOutlet weak var collectionView: UICollectionView!
     let reachability = try! Reachability()
 
@@ -24,7 +26,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "homeCell")
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        
+
         // Start the reachability notifier
         startReachabilityNotifier()
     }
@@ -68,6 +70,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
 
+        // Set the chosenSportName based on the selected cell, and convert it to lowercase
+        chosenSportName = sport[indexPath.row].title?.lowercased()
+
+        // Print the chosenSportName to verify
+        if let chosenSportName = chosenSportName {
+            print(chosenSportName) // This will print the name in lowercase
+        }
+
         // Animate cell selection
         UIView.animate(withDuration: 0.2, animations: {
             cell?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
@@ -78,7 +88,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 // Check reachability after the animation
                 self.checkReachability { isReachable in
                     if isReachable {
-                        self.goToThirdViewController()
+                        self.goToLeagueViewController()
                     } else {
                         self.showAlert()
                     }
@@ -103,10 +113,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
 
-    func goToThirdViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let thirdVC = storyboard.instantiateViewController(withIdentifier: "thirdvc") as? ThirdViewController {
-            navigationController?.pushViewController(thirdVC, animated: true)
+    func goToLeagueViewController() {
+        let storyboard = UIStoryboard(name: "Main2", bundle: nil)
+        if let leagueVC = storyboard.instantiateViewController(withIdentifier: "leaguevc") as? LeagueViewController {
+            // Pass the chosenSportName to LeagueViewController
+            leagueVC.chosenSportName = chosenSportName
+            navigationController?.pushViewController(leagueVC, animated: true)
         }
     }
 

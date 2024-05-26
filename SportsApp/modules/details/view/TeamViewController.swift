@@ -15,6 +15,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var teamImage: UIImageView!
     @IBOutlet weak var sportImage: UIImageView!
     
+    var sportName: String?
+    var teamId: String?
+    
     let viewModel = TeamViewModel()
     
     override func viewDidLoad() {
@@ -38,7 +41,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         // Fetch team details
-        viewModel.fetchTeamDetails(sportName: "football", teamId: "123")
+        if let sportName = sportName, let teamId = teamId {
+                   viewModel.fetchTeamDetails(sportName: sportName, teamId: teamId)
+               }
     }
     
     func updateUI() {

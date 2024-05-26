@@ -9,55 +9,42 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavTableViewCell" customModule="SportsApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="333" id="TJA-M1-Iqu" customClass="FavTableViewCell" customModule="SportsApp" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="95" id="TJA-M1-Iqu" customClass="FavTableViewCell" customModule="SportsApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="354" height="184"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TJA-M1-Iqu" id="6HB-De-Vna">
                 <rect key="frame" x="0.0" y="0.0" width="354" height="184"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWb-OU-b6y">
-                        <rect key="frame" x="16" y="16" width="322" height="152"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arther" translatesAutoresizingMaskIntoConstraints="NO" id="vYK-ym-oz4">
-                                <rect key="frame" x="24" y="46" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Mzi-SI-b15"/>
-                                    <constraint firstAttribute="width" constant="60" id="kYU-RF-ZNO"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egyptian" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqV-iM-3LE">
-                                <rect key="frame" x="114" y="56" width="177" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="RqV-mI-5dt"/>
-                                    <constraint firstAttribute="height" constant="40" id="ji6-UT-HWn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.65748027259999997" green="0.72639536680000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egyptian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqV-iM-3LE">
+                        <rect key="frame" x="109" y="78.666666666666671" width="250" height="27"/>
                         <constraints>
-                            <constraint firstItem="UqV-iM-3LE" firstAttribute="centerY" secondItem="bWb-OU-b6y" secondAttribute="centerY" id="WWL-iB-EaQ"/>
-                            <constraint firstItem="vYK-ym-oz4" firstAttribute="centerY" secondItem="bWb-OU-b6y" secondAttribute="centerY" id="aNY-Py-FZO"/>
-                            <constraint firstItem="UqV-iM-3LE" firstAttribute="leading" secondItem="vYK-ym-oz4" secondAttribute="trailing" constant="30" id="p4M-4E-YkM"/>
-                            <constraint firstItem="vYK-ym-oz4" firstAttribute="leading" secondItem="bWb-OU-b6y" secondAttribute="leading" constant="24" id="qrK-g6-ctz"/>
+                            <constraint firstAttribute="width" constant="250" id="NUd-iK-3KL"/>
+                            <constraint firstAttribute="height" constant="27" id="tAm-pc-ivj"/>
                         </constraints>
-                    </view>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arther" translatesAutoresizingMaskIntoConstraints="NO" id="vYK-ym-oz4">
+                        <rect key="frame" x="8" y="57" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="5T7-5N-xMe"/>
+                            <constraint firstAttribute="height" constant="70" id="wy1-gr-bTZ"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bWb-OU-b6y" firstAttribute="leading" secondItem="6HB-De-Vna" secondAttribute="leading" constant="16" id="6tn-Dg-XWY"/>
-                    <constraint firstAttribute="trailing" secondItem="bWb-OU-b6y" secondAttribute="trailing" constant="16" id="JhJ-z9-Mxg"/>
-                    <constraint firstAttribute="bottom" secondItem="bWb-OU-b6y" secondAttribute="bottom" constant="16" id="ife-xl-uGM"/>
-                    <constraint firstItem="bWb-OU-b6y" firstAttribute="top" secondItem="6HB-De-Vna" secondAttribute="top" constant="16" id="o1x-mp-1Vx"/>
+                    <constraint firstItem="vYK-ym-oz4" firstAttribute="leading" secondItem="6HB-De-Vna" secondAttribute="leading" constant="8" id="T4L-Ox-RzD"/>
+                    <constraint firstItem="UqV-iM-3LE" firstAttribute="leading" secondItem="vYK-ym-oz4" secondAttribute="trailing" constant="31" id="mtW-gI-bBy"/>
+                    <constraint firstItem="UqV-iM-3LE" firstAttribute="centerY" secondItem="6HB-De-Vna" secondAttribute="centerY" id="nU9-y1-J09"/>
+                    <constraint firstItem="vYK-ym-oz4" firstAttribute="centerY" secondItem="6HB-De-Vna" secondAttribute="centerY" id="w97-Pu-tR6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="JdB-9U-VDv"/>
             <connections>
                 <outlet property="favLeagueImage" destination="vYK-ym-oz4" id="Pv7-RL-JSx"/>
                 <outlet property="favLeagueName" destination="UqV-iM-3LE" id="cbQ-xT-z6m"/>
-                <outlet property="favView" destination="bWb-OU-b6y" id="HhX-ZZ-bS8"/>
             </connections>
             <point key="canvasLocation" x="21.374045801526716" y="38.028169014084511"/>
         </tableViewCell>

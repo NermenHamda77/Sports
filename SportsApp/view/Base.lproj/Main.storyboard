@@ -27,7 +27,7 @@
         <!--Team View Controller-->
         <scene sceneID="usX-za-I5Q">
             <objects>
-                <viewController id="sjD-62-lni" customClass="TeamViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="teamDetailsvc" id="sjD-62-lni" customClass="TeamViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ish-Mu-3me">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,21 +216,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRW-yJ-6FQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4008.3969465648852" y="45.774647887323944"/>
-        </scene>
-        <!--Third View Controller-->
-        <scene sceneID="o1h-Bu-V8q">
-            <objects>
-                <viewController storyboardIdentifier="thirdvc" id="xT9-Zv-qg6" customClass="ThirdViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="npu-8R-K82">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="172-ZX-vMi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fIO-oz-9wX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4872.5190839694651" y="45.774647887323944"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="eKu-Z6-fbh">

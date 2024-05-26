@@ -9,6 +9,10 @@ import UIKit
 
 
 class LeagueDetailsCollectionViewController: UICollectionViewController {
+    
+    var sportName: String?
+    var leagueId: Int?
+    
     @IBAction func addToFav(_ sender: UIButton) {
     }
     
@@ -65,9 +69,11 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
        viewModel.getLatestResult(sportType: viewModel.sportType ?? "", leagueId: viewModel.leagueId ?? 0)
       viewModel.getTeams(sportType: viewModel.sportType ?? "", leagueId: viewModel.leagueId ?? 0)*/
         
-    viewModel.getUpComingEvents(sportType: "football", leagueId: 207)
-    viewModel.getLatestResult(sportType: "football", leagueId: 207)
-    viewModel.getTeams(sportType: "football", leagueId: 207)
+        if let sportName = sportName, let leagueId = leagueId {
+                    viewModel.getUpComingEvents(sportType: sportName, leagueId: leagueId)
+                    viewModel.getLatestResult(sportType: sportName, leagueId: leagueId)
+                    viewModel.getTeams(sportType: sportName, leagueId: leagueId)
+                }
         
         
 }
@@ -294,6 +300,21 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
     
         
     }
+    
+    /* nav to TeamViewController */
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            if indexPath.section == 2 {
+                guard let team = viewModel.teams?.result?[indexPath.item], let teamId = team.team_key else {
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let teamVC = storyboard.instantiateViewController(withIdentifier: "teamDetailsvc") as? TeamViewController {
+                    teamVC.sportName = sportName
+                    teamVC.teamId = String(teamId)
+                    navigationController?.pushViewController(teamVC, animated: true)
+                }
+            }
+        }
 
     
     private func configureTeamsCell(_ cell: TeamsCollectionViewCell, at indexPath: IndexPath) {
