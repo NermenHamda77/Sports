@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 // Check reachability after the animation
                 self.checkReachability { isReachable in
                     if isReachable {
-                      // self.goToLeagueViewController()
+                      self.goToLeagueViewController()
                     } else {
                         self.showAlert()
                     }
@@ -118,8 +118,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func goToLeagueViewController() {
         let storyboard = UIStoryboard(name: "Main2", bundle: nil)
         if let leagueVC = storyboard.instantiateViewController(withIdentifier: "leaguevc") as? LeagueViewController {
+
             // Pass the chosenSportName to LeagueViewController
             leagueVC.chosenSportName = chosenSportName
+
+             //Pass the chosenSportName to LeagueViewController
+           leagueVC.chosenSportName = chosenSportName
+
             navigationController?.pushViewController(leagueVC, animated: true)
         }
     }

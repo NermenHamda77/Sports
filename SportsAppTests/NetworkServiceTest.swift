@@ -6,7 +6,8 @@
 //
 
 import XCTest
-//@testable import SportsApp
+@testable import SportsApp
+
 final class NetworkServiceTest: XCTestCase {
 
     override func setUpWithError() throws {

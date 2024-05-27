@@ -9,6 +9,11 @@ import UIKit
 
 class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    @IBAction func addFavorite(_ sender: UIButton) {
+        print("hiiiii")
+    }
+    
     @IBOutlet weak var leagueTableView: UITableView!
     var chosenSportName: String? // Variable to receive the chosen sport name
     
