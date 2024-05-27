@@ -25,5 +25,23 @@ class LeaguesViewModel {
             self.leaguesResult = result
         }
     }
+    
+    func addLeagueToFavorites(at index: Int) {
+        let league = leaguesResult[index]
+        let favoriteLeague = FavoriteLeagues(leagueName: league.leagueName,
+                                             leagueKey: league.leagueKey,
+                                             leagueLogo: league.leagueLogo ?? "",
+                                             sportName: selectedSportType ?? "")
+        DatabaseManager.shared.insertLeague(league: favoriteLeague)
+    }
+    
+    func removeLeagueFromFavorites(at index: Int) {
+        let league = leaguesResult[index]
+        DatabaseManager.shared.deleteFavLeague(leagueKey: league.leagueKey)
+    }
+    
+    func isLeagueFavorite(at index: Int) -> Bool {
+        let league = leaguesResult[index]
+        return DatabaseManager.shared.isLeagueFavorite(leagueKey: league.leagueKey)
+    }
 }
-

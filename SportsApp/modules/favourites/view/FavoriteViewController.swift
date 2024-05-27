@@ -7,21 +7,44 @@
 
 import UIKit
 import Reachability
-
+import SDWebImage
 
 class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     let reachability = try! Reachability()
+    private var favViewModel = FavViewModel()
+    private var noFavoritesLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+       
+        noFavoritesLabel = UILabel()
+        noFavoritesLabel.text = "No Favorite Leagues"
+        noFavoritesLabel.textAlignment = .center
+        noFavoritesLabel.textColor = .gray
+        noFavoritesLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        noFavoritesLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(noFavoritesLabel)
+
+      
+        NSLayoutConstraint.activate([
+            noFavoritesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noFavoritesLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+
+      
+        noFavoritesLabel.isHidden = true
 
         tableView.register(UINib(nibName: "FavTableViewCell", bundle: nil), forCellReuseIdentifier: "favCell")
         tableView.delegate = self
         tableView.dataSource = self
 
-        // Start the notifier once in viewDidLoad
+        favViewModel.bindFavoriteLeaguesToController = { [weak self] in
+            self?.updateUI()
+        }
+
         startReachabilityNotifier()
     }
 
@@ -33,6 +56,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startReachabilityNotifier()
+        favViewModel.fetchFavoriteLeagues()
     }
 
     func startReachabilityNotifier() {
@@ -43,38 +67,51 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
+    func updateUI() {
+        tableView.reloadData()
+        noFavoritesLabel.isHidden = favViewModel.numberOfFavoriteLeagues() != 0
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return favViewModel.numberOfFavoriteLeagues()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavTableViewCell
 
-        cell.favLeagueImage.layer.cornerRadius = 30.0
+        let league = favViewModel.getFavoriteLeague(at: indexPath.row)
+        cell.favLeagueName.text = league.leagueName
+
+        if let url = URL(string: league.leagueLogo) {
+            cell.favLeagueImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultImage"), options: .continueInBackground, completed: nil)
+        } else {
+            cell.favLeagueImage.image = UIImage(named: "defaultImage")
+        }
+
+        cell.layer.cornerRadius = 6.0
+        cell.layer.masksToBounds = true
+        cell.favLeagueImage.layer.cornerRadius = 35.0
         cell.favLeagueImage.layer.masksToBounds = true
-        
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 95
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
 
-        // Animate cell selection
         UIView.animate(withDuration: 0.2, animations: {
             cell?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }) { (completed) in
             UIView.animate(withDuration: 0.2, animations: {
                 cell?.transform = CGAffineTransform.identity
             }) { (completed) in
-                // Check reachability after the animation
                 self.checkReachability { isReachable in
                     if isReachable {
-                        self.goToSecondViewController()
+                        self.goToLeagueDetailsViewController(for: indexPath.row)
                     } else {
                         self.showAlert()
                     }
@@ -91,7 +128,6 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
             completion(false)
         }
 
-        // Immediately check the current connection status
         if reachability.connection != .unavailable {
             completion(true)
         } else {
@@ -99,10 +135,13 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    func goToSecondViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let secondVC = storyboard.instantiateViewController(withIdentifier: "secondvc") as? SecondViewController {
-            navigationController?.pushViewController(secondVC, animated: true)
+    func goToLeagueDetailsViewController(for index: Int) {
+        let storyboard = UIStoryboard(name: "Main2", bundle: nil)
+        if let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController {
+            let selectedLeague = favViewModel.getFavoriteLeague(at: index)
+            leagueDetailsVC.sportName = selectedLeague.sportName
+            leagueDetailsVC.leagueId = Int(selectedLeague.leagueKey)
+            navigationController?.pushViewController(leagueDetailsVC, animated: true)
         }
     }
 
@@ -111,4 +150,12 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            favViewModel.deleteFavoriteLeague(at: indexPath.row)
+        }
+    }
 }
+
+

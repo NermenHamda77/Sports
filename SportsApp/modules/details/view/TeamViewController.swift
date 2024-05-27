@@ -14,7 +14,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamImage: UIImageView!
     @IBOutlet weak var sportImage: UIImageView!
-    
+    var indicator: UIActivityIndicatorView?
     var sportName: String?
     var teamId: String?
     
@@ -22,22 +22,27 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set up TableView
+        indicator = UIActivityIndicatorView(style: .medium)
+        indicator?.center = view.center
+        view.addSubview(indicator!)
+        indicator?.startAnimating()
+                
         let nib = UINib(nibName: "PlayersTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "playersCell")
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        // Set sport image opacity
+       
         sportImage.alpha = 0.9
         
-        // Bind to ViewModel
+       
         viewModel.updateUI = { [weak self] in
-            DispatchQueue.main.async {
-                self?.updateUI()
-            }
+                    DispatchQueue.main.async {
+                        self?.updateUI()
+                        self?.indicator?.stopAnimating()
+                        self?.indicator?.removeFromSuperview()
+                    }
         }
         
         // Fetch team details

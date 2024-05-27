@@ -7,17 +7,23 @@
 
 import UIKit
 
-
 class LeagueDetailsCollectionViewController: UICollectionViewController {
     
     var sportName: String?
     var leagueId: Int?
-    
+    var indicator: UIActivityIndicatorView?
     var viewModel = LeaguesDetailsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initialize and configure the activity indicator
+        indicator = UIActivityIndicatorView(style: .medium)
+        indicator?.center = view.center
+        view.addSubview(indicator!)
+        
+        // Start the activity indicator before fetching data
+        indicator?.startAnimating()
         
         // Register the header view
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
@@ -28,52 +34,51 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
         let teamsHeader = createSectionHeader(size: .absolute(44))
         
         let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
-                 switch sectionIndex {
-                 case 0:
-                     return self.drawTheTopSection(withHeader: upcomingEventsHeader)
-                 case 1:
-                     return self.drawTheLatestResultsSection(withHeader: latestResultsHeader)
-                 case 2:
-                     return self.drawTeamsSection(withHeader: teamsHeader)
-                 default:
-                     fatalError("Unexpected section")
-                 }
-             }
-        
+            switch sectionIndex {
+            case 0:
+                return self.drawTheTopSection(withHeader: upcomingEventsHeader)
+            case 1:
+                return self.drawTheLatestResultsSection(withHeader: latestResultsHeader)
+            case 2:
+                return self.drawTeamsSection(withHeader: teamsHeader)
+            default:
+                fatalError("Unexpected section")
+            }
+        }
         
         collectionView.setCollectionViewLayout(layout, animated: true)
         
+        // Bind data to reload collection view and stop the activity indicator
         viewModel.bindUpComingEventsToLeagueDetailsViewController = { [weak self] in
-                    DispatchQueue.main.async {
-                        self?.collectionView.reloadData()
-                    }
-                }
-        
-        viewModel.bindLatestResultsToLeagueDetailsViewController = {
-            [weak self] in DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 self?.collectionView.reloadData()
+                self?.indicator?.stopAnimating()
+                self?.indicator?.removeFromSuperview()
             }
         }
         
-        viewModel.bindTeamsToLeagueDetailsViewController = {
-            [weak self] in DispatchQueue.main.async {
+        viewModel.bindLatestResultsToLeagueDetailsViewController = { [weak self] in
+            DispatchQueue.main.async {
                 self?.collectionView.reloadData()
+                self?.indicator?.stopAnimating()
+                self?.indicator?.removeFromSuperview()
             }
         }
-        /*
-        // Fetch data using the updated viewModel properties
-       viewModel.getUpComingEvents(sportType: viewModel.sportType ?? "", leagueId: viewModel.leagueId ?? 0)
-       viewModel.getLatestResult(sportType: viewModel.sportType ?? "", leagueId: viewModel.leagueId ?? 0)
-      viewModel.getTeams(sportType: viewModel.sportType ?? "", leagueId: viewModel.leagueId ?? 0)*/
+        
+        viewModel.bindTeamsToLeagueDetailsViewController = { [weak self] in
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+                self?.indicator?.stopAnimating()
+                self?.indicator?.removeFromSuperview()
+            }
+        }
         
         if let sportName = sportName, let leagueId = leagueId {
-                    viewModel.getUpComingEvents(sportType: sportName, leagueId: leagueId)
-                    viewModel.getLatestResult(sportType: sportName, leagueId: leagueId)
-                    viewModel.getTeams(sportType: sportName, leagueId: leagueId)
-                }
-        
-        
-}
+            viewModel.getUpComingEvents(sportType: sportName, leagueId: leagueId)
+            viewModel.getLatestResult(sportType: sportName, leagueId: leagueId)
+            viewModel.getTeams(sportType: sportName, leagueId: leagueId)
+        }
+    }
 
     func drawTheTopSection(withHeader header: NSCollectionLayoutBoundarySupplementaryItem) -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))

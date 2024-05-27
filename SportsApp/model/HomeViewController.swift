@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "homeCell")
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
 
-        // Start the reachability notifier
+     
         startReachabilityNotifier()
     }
 
@@ -70,22 +70,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
 
-        // Set the chosenSportName based on the selected cell, and convert it to lowercase
+        
         chosenSportName = sport[indexPath.row].title?.lowercased()
 
-        // Print the chosenSportName to verify
+        
         if let chosenSportName = chosenSportName {
-            print(chosenSportName) // This will print the name in lowercase
+            print(chosenSportName)
         }
 
-        // Animate cell selection
+      
         UIView.animate(withDuration: 0.2, animations: {
             cell?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }) { (completed) in
             UIView.animate(withDuration: 0.2, animations: {
                 cell?.transform = CGAffineTransform.identity
             }) { (completed) in
-                // Check reachability after the animation
+            
                 self.checkReachability { isReachable in
                     if isReachable {
                       self.goToLeagueViewController()
@@ -105,7 +105,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             completion(false)
         }
 
-        // Immediately check the current connection status
+        
         if reachability.connection != .unavailable {
             completion(true)
         } else {
@@ -119,10 +119,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let storyboard = UIStoryboard(name: "Main2", bundle: nil)
         if let leagueVC = storyboard.instantiateViewController(withIdentifier: "leaguevc") as? LeagueViewController {
 
-            // Pass the chosenSportName to LeagueViewController
+           
             leagueVC.chosenSportName = chosenSportName
 
-             //Pass the chosenSportName to LeagueViewController
+            
            leagueVC.chosenSportName = chosenSportName
 
             navigationController?.pushViewController(leagueVC, animated: true)

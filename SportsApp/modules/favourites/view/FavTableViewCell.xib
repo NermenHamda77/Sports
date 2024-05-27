@@ -17,17 +17,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egyptian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqV-iM-3LE">
-                        <rect key="frame" x="109" y="78.666666666666671" width="250" height="27"/>
+                        <rect key="frame" x="129" y="78.666666666666671" width="200" height="27"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="250" id="NUd-iK-3KL"/>
+                            <constraint firstAttribute="width" constant="200" id="NUd-iK-3KL"/>
                             <constraint firstAttribute="height" constant="27" id="tAm-pc-ivj"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arther" translatesAutoresizingMaskIntoConstraints="NO" id="vYK-ym-oz4">
-                        <rect key="frame" x="8" y="57" width="70" height="70"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vYK-ym-oz4">
+                        <rect key="frame" x="28" y="57" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="5T7-5N-xMe"/>
                             <constraint firstAttribute="height" constant="70" id="wy1-gr-bTZ"/>
@@ -35,7 +35,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="vYK-ym-oz4" firstAttribute="leading" secondItem="6HB-De-Vna" secondAttribute="leading" constant="8" id="T4L-Ox-RzD"/>
+                    <constraint firstItem="vYK-ym-oz4" firstAttribute="leading" secondItem="6HB-De-Vna" secondAttribute="leading" constant="28" id="T4L-Ox-RzD"/>
                     <constraint firstItem="UqV-iM-3LE" firstAttribute="leading" secondItem="vYK-ym-oz4" secondAttribute="trailing" constant="31" id="mtW-gI-bBy"/>
                     <constraint firstItem="UqV-iM-3LE" firstAttribute="centerY" secondItem="6HB-De-Vna" secondAttribute="centerY" id="nU9-y1-J09"/>
                     <constraint firstItem="vYK-ym-oz4" firstAttribute="centerY" secondItem="6HB-De-Vna" secondAttribute="centerY" id="w97-Pu-tR6"/>
@@ -49,7 +49,4 @@
             <point key="canvasLocation" x="21.374045801526716" y="38.028169014084511"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="Arther" width="1080" height="1080"/>
-    </resources>
 </document>
