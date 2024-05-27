@@ -14,6 +14,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
     var leagueId: Int?
     
     @IBAction func addToFav(_ sender: UIButton) {
+        print("added to fav")
     }
     
     var viewModel = LeaguesDetailsViewModel()

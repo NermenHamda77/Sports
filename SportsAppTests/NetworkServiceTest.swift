@@ -1,14 +1,13 @@
 //
-//  SportsAppTests.swift
+//  NetworkServiceTest.swift
 //  SportsAppTests
 //
-//  Created by Ner Meen on 18/05/2024.
+//  Created by Ner Meen on 27/05/2024.
 //
 
 import XCTest
-@testable import SportsApp
-
-final class SportsAppTests: XCTestCase {
+//@testable import SportsApp
+final class NetworkServiceTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

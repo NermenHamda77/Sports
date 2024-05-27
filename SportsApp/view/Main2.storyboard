@@ -101,7 +101,7 @@
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="filled" image="star" catalog="system"/>
                                     <connections>
-                                        <action selector="addToFav:" destination="xLd-QG-BHc" eventType="touchUpInside" id="axs-di-GSU"/>
+                                        <action selector="addToFav:" destination="xLd-QG-BHc" eventType="touchUpInside" id="sMk-8q-Mmd"/>
                                     </connections>
                                 </button>
                             </subviews>

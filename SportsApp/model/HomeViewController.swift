@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 // Check reachability after the animation
                 self.checkReachability { isReachable in
                     if isReachable {
-                      //  self.goToLeagueViewController()
+                      // self.goToLeagueViewController()
                     } else {
                         self.showAlert()
                     }
@@ -112,6 +112,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             completion(false)
         }
     }
+    
+    
 
 //    func goToLeagueViewController() {
 //        let storyboard = UIStoryboard(name: "Main2", bundle: nil)
