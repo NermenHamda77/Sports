@@ -13,6 +13,7 @@ class LeagueTableViewCell: UITableViewCell {
     
     @IBOutlet weak var leagueName: UILabel!
     
+    @IBOutlet weak var favoriteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

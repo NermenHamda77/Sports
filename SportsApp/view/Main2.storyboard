@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -12,7 +13,7 @@
         <!--League View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="LeagueViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leaguevc" id="Y6W-OH-hqX" customClass="LeagueViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,25 +40,40 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEFAI Europe Corfeience league" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wN-L8-fOc">
-                                                    <rect key="frame" x="109" y="34" width="215" height="27"/>
+                                                    <rect key="frame" x="88" y="34" width="200" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="QdV-02-9UB"/>
-                                                        <constraint firstAttribute="width" constant="215" id="ayl-FR-vqj"/>
+                                                        <constraint firstAttribute="width" constant="200" id="ayl-FR-vqj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU7-1a-99Q">
+                                                    <rect key="frame" x="301" y="33" width="29" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="29" id="3jg-cp-NlQ"/>
+                                                        <constraint firstAttribute="width" constant="29" id="50o-Cy-3Ms"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="addFavorite:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lZw-3X-qeJ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                             <constraints>
+                                                <constraint firstItem="aU7-1a-99Q" firstAttribute="centerY" secondItem="aHp-HS-u0L" secondAttribute="centerY" id="72F-E5-fe5"/>
                                                 <constraint firstItem="Y7e-oA-FET" firstAttribute="leading" secondItem="aHp-HS-u0L" secondAttribute="leading" constant="8" id="EEf-Tr-WeQ"/>
-                                                <constraint firstItem="1wN-L8-fOc" firstAttribute="leading" secondItem="Y7e-oA-FET" secondAttribute="trailing" constant="31" id="KWP-6N-S1Z"/>
+                                                <constraint firstItem="1wN-L8-fOc" firstAttribute="leading" secondItem="Y7e-oA-FET" secondAttribute="trailing" constant="10" id="KWP-6N-S1Z"/>
                                                 <constraint firstItem="1wN-L8-fOc" firstAttribute="centerY" secondItem="aHp-HS-u0L" secondAttribute="centerY" id="Kvb-HE-gFK"/>
+                                                <constraint firstAttribute="trailing" secondItem="aU7-1a-99Q" secondAttribute="trailing" constant="10" id="ly1-Sf-LxG"/>
                                                 <constraint firstItem="Y7e-oA-FET" firstAttribute="centerY" secondItem="aHp-HS-u0L" secondAttribute="centerY" id="wuQ-2V-u2f"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="aU7-1a-99Q" id="mcr-V5-qJt"/>
                                             <outlet property="leagueName" destination="1wN-L8-fOc" id="FAO-jV-Egz"/>
                                             <outlet property="myLogo" destination="Y7e-oA-FET" id="vn4-XO-mqz"/>
                                         </connections>
@@ -94,17 +110,6 @@
                         <view key="backgroundView" contentMode="scaleToFill" id="enE-5N-blJ">
                             <rect key="frame" x="0.0" y="-59" width="393" height="852"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ2-bt-Cwx">
-                                    <rect key="frame" x="277.66666666666674" y="40" width="52" height="34"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="filled" image="star" catalog="system"/>
-                                    <connections>
-                                        <action selector="addToFav:" destination="xLd-QG-BHc" eventType="touchUpInside" id="sMk-8q-Mmd"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <cells>
@@ -361,7 +366,7 @@
     </scenes>
     <resources>
         <image name="defultImage" width="225" height="148"/>
-        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -13,10 +13,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
     var sportName: String?
     var leagueId: Int?
     
-    @IBAction func addToFav(_ sender: UIButton) {
-        print("added to fav")
-    }
-    
     var viewModel = LeaguesDetailsViewModel()
 
     override func viewDidLoad() {
