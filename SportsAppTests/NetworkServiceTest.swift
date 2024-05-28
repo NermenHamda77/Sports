@@ -6,31 +6,104 @@
 //
 
 import XCTest
-//@testable import SportsApp
+@testable import SportsApp
 
 final class NetworkServiceTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    // fetchLeaguesResult
+    
+    func testfetchLeaguesResult () {
+        // Given:
+        let expectation = expectation(description: "Waiting for the API")
+        NetworkService.fetchLeaguesResult(sport: "football"){ res in
+            // When:
+            guard let _ = res else {
+                // Then:
+                XCTFail("Result returned was nil.")
+                expectation.fulfill()
+                return
+            }
+            expectation.fulfill()
         }
+        
+        self.waitForExpectations(timeout: 5)
+        
     }
-
+    
+    
+    //fetchFixturesResult(upcoming)
+    
+    func testfetchFixturesResultFootballNotNil() {
+        // Given:
+        let expectation = expectation(description: "Waiting for the API")
+        NetworkService.fetchFixturesResult(sport: "football", leagueId: 3) { res in
+            // When:
+            guard let res = res else {
+                // Then:
+                XCTFail("Result returned was nil.")
+                expectation.fulfill()
+                return
+            }
+            let upcomingMatchesFootball = res.result
+            // Then:
+            XCTAssertNotNil(upcomingMatchesFootball)
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 5)
+        
+    }
+    
+    
+    func testfetchFixturesResultTennisNil () {
+        // Given:
+        let expectation = expectation(description: "Waiting for the API")
+        NetworkService.fetchFixturesResult(sport: "tennis", leagueId: 3) { res in
+            // When: The response is received
+            guard let res = res else {
+                // Then:
+                XCTFail("Result returned was nil.")
+                expectation.fulfill()
+                return
+            }
+            // Then:
+            XCTAssertNil(res.result)
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 5)
+        
+    }
+    
+    
+    //lastest
+    func testFetchLestestResult() {
+          let expectation = expectation(description: "Waiting for Api")
+          NetworkService.fetchLiveScoreResult(sport: "football" , leagueId: 257){ result in
+              guard let liveScore = result else{
+                  XCTFail()
+                  expectation.fulfill()
+                  return
+              }
+              XCTAssertNotEqual(liveScore.result?.count, 0)
+              expectation.fulfill()
+          }
+          waitForExpectations(timeout: 5)
+      }
+    
+    //teams
+    func testFetchTeamsResult() {
+            let expectation = expectation(description: "Waiting for Api")
+        NetworkService.fetchTeamsResult(sport: "football",leagueId: 4){ result in
+                guard let teams = result else{
+                    XCTFail()
+                    expectation.fulfill()
+                    return
+                }
+                XCTAssertNotEqual(teams.result?.count, 0)
+                expectation.fulfill()
+            }
+            waitForExpectations(timeout: 5)
+        }
+        
 }

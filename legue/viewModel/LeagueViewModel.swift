@@ -20,7 +20,7 @@ class LeaguesViewModel {
     }
     
     func getLeaguesResult(sportType: String) {
-        NetworkService().fetchLeaguesResult(sport: sportType) { [weak self] data in
+        NetworkService.fetchLeaguesResult(sport: sportType) { [weak self] data in
             guard let self = self, let result = data?.result else { return }
             self.leaguesResult = result
         }

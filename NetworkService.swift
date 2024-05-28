@@ -9,9 +9,9 @@ import Foundation
 
 class NetworkService {
     
-    private let API_KEY = "7d631bc915fda8279666dacfd6ad0494adff0b98bee2aec6126920bbe8754073"
+    static let API_KEY = "7d631bc915fda8279666dacfd6ad0494adff0b98bee2aec6126920bbe8754073"
 
-    func fetchLeaguesResult(sport: String, completionHandler: @escaping (Leagues?) -> Void) {
+    static func fetchLeaguesResult(sport: String, completionHandler: @escaping (Leagues?) -> Void) {
         let urlString =  "https://apiv2.allsportsapi.com/\(sport)/?met=Leagues&APIkey=\(API_KEY)"
 
         print("Fetching URL: \(urlString)")
@@ -51,7 +51,7 @@ class NetworkService {
         task.resume()
     }
     
-    func fetchFixturesResult(sport: String, leagueId: Int, completionHandler: @escaping (UpcomingMatchesResult?) -> Void) {
+    static func fetchFixturesResult(sport: String, leagueId: Int, completionHandler: @escaping (UpcomingMatchesResult?) -> Void) {
             let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2023-12-18&to=2024-04-18"
             
             guard let url = URL(string: urlString) else {
@@ -91,7 +91,7 @@ class NetworkService {
             task.resume()
         }
     
-    func fetchLiveScoreResult(sport: String, leagueId: Int, completion: @escaping (LiveMatchesResult?) -> Void) {
+    static func fetchLiveScoreResult(sport: String, leagueId: Int, completion: @escaping (LiveMatchesResult?) -> Void) {
         
         let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&leagueId=\(leagueId)&APIkey=\(API_KEY)&from=2016-01-18&to=2018-01-18"
         
@@ -118,7 +118,7 @@ class NetworkService {
         task.resume()
     }
     
-    func fetchTeamsResult(sport: String, leagueId: Int, compilitionHandler: @escaping (AllTeamsResult?) -> Void) {
+   static func fetchTeamsResult(sport: String, leagueId: Int, compilitionHandler: @escaping (AllTeamsResult?) -> Void) {
         
     let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)/?met=Teams&leagueId=\(leagueId)&APIkey=\(API_KEY)")
             

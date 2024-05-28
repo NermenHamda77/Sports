@@ -33,11 +33,11 @@ class LeaguesDetailsViewModel{
         }
     }
     
-    let network = NetworkService()
+    //let network = NetworkService()
     
     // UpComing Events Result
     func getUpComingEvents(sportType: String, leagueId: Int) {
-           network.fetchFixturesResult(sport: sportType, leagueId: leagueId) { [weak self] (data) in
+        NetworkService.fetchFixturesResult(sport: sportType, leagueId: leagueId) { [weak self] (data) in
                guard let self = self else { return }
                guard let result = data else {
                    print("No upcoming events data received.")
@@ -50,7 +50,7 @@ class LeaguesDetailsViewModel{
      
     // Latest Result
     func getLatestResult(sportType : String , leagueId : Int){
-        network.fetchLiveScoreResult(sport: sportType, leagueId: leagueId){(data) in
+        NetworkService.fetchLiveScoreResult(sport: sportType, leagueId: leagueId){(data) in
             guard let result = data else {return}
             //print("Upcoming events data received: \(result)")
             self.latestResults = result
@@ -59,7 +59,7 @@ class LeaguesDetailsViewModel{
     
     // Teams
     func getTeams(sportType : String , leagueId : Int){
-        network.fetchTeamsResult(sport: sportType, leagueId: leagueId){(data) in
+        NetworkService.fetchTeamsResult(sport: sportType, leagueId: leagueId){(data) in
             guard let result = data else {return}
             //print("Upcoming events data received: \(result)")
             self.teams = result
