@@ -83,9 +83,9 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         cell.favLeagueName.text = league.leagueName
 
         if let url = URL(string: league.leagueLogo) {
-            cell.favLeagueImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultImage"), options: .continueInBackground, completed: nil)
+            cell.favLeagueImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defultImage"), options: .continueInBackground, completed: nil)
         } else {
-            cell.favLeagueImage.image = UIImage(named: "defaultImage")
+            cell.favLeagueImage.image = UIImage(named: "defultImage")
         }
 
         cell.layer.cornerRadius = 6.0
