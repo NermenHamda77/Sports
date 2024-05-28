@@ -4,27 +4,27 @@
 //
 //  Created by Ner Meen on 26/05/2024.
 //
+
 import Foundation
 import UIKit
 import CoreData
 
 class DatabaseManager {
-    static let shared = DatabaseManager()
+    static let shared = DatabaseManager(persistentContainer: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
     
+    var persistentContainer: NSPersistentContainer
     private var favoriteLeagues = [FavoriteLeagues]()
-    
     var onFavoritesChanged: (() -> Void)?
     
-    private init() {
-        favoriteLeagues = fetchFavoriteLeaguesFromCoreData()
+    init(persistentContainer: NSPersistentContainer) {
+        self.persistentContainer = persistentContainer
+        self.favoriteLeagues = fetchFavoriteLeaguesFromCoreData()
     }
-    
-    // add league in Core Data
+
+    // Function to insert a league into Core Data
     func insertLeague(league: FavoriteLeagues) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "FavouriteLeague", in: context)!
+        let context = persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "FavLeague", in: context)!
         let favLeague = NSManagedObject(entity: entity, insertInto: context)
         
         favLeague.setValue(league.leagueName, forKey: "leagueName")
@@ -36,17 +36,16 @@ class DatabaseManager {
             try context.save()
             favoriteLeagues.append(league)
             onFavoritesChanged?()
-            print("League added to Core Data")
+            print("League saved to Core Data and added to favorite leagues array.")
         } catch {
-            print("Error while adding league to Core Data: \(error.localizedDescription)")
+            print("Error saving league to Core Data: \(error.localizedDescription)")
         }
     }
 
-    // fetch all favorite leagues from Core Data
+    // Function to fetch all favorite leagues from Core Data
     private func fetchFavoriteLeaguesFromCoreData() -> [FavoriteLeagues] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavLeague")
         
         do {
             let favLeagues = try context.fetch(fetchRequest)
@@ -63,21 +62,20 @@ class DatabaseManager {
         }
     }
     
-    
+    // Public method to get favorite leagues
     func getFavoriteLeagues() -> [FavoriteLeagues] {
         return favoriteLeagues
     }
     
-   
+    // Function to check if a league is already in Core Data
     func isLeagueFavorite(leagueKey: Int) -> Bool {
         return favoriteLeagues.contains { $0.leagueKey == leagueKey }
     }
 
-    // delete league from Core Data
+    // Function to delete a league from Core Data
     func deleteFavLeague(leagueKey: Int) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavouriteLeague")
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavLeague")
         fetchRequest.predicate = NSPredicate(format: "leagueKey == %d", leagueKey)
         
         do {
@@ -88,7 +86,7 @@ class DatabaseManager {
             try context.save()
             favoriteLeagues.removeAll { $0.leagueKey == leagueKey }
             onFavoritesChanged?()
-            
+            print("League deleted from Core Data and removed from favorite leagues array.")
         } catch let error {
             print("Error deleting data: \(error.localizedDescription)")
         }
