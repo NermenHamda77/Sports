@@ -16,7 +16,6 @@
 		C4171F4E2BF8CAC100313062 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4171F4C2BF8CAC100313062 /* LaunchScreen.storyboard */; };
 		C4171F632BF8CAC200313062 /* SportsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F622BF8CAC200313062 /* SportsAppUITests.swift */; };
 		C4171F652BF8CAC200313062 /* SportsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4171F642BF8CAC200313062 /* SportsAppUITestsLaunchTests.swift */; };
-		C4171F732BF8CAEB00313062 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4171F722BF8CAEB00313062 /* SDWebImage */; };
 		C4171F762BF8CB0400313062 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = C4171F752BF8CB0400313062 /* Reachability */; };
 		C4171F792BF8CB3F00313062 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4171F782BF8CB3F00313062 /* Main2.storyboard */; };
 		C45A69362C06611800B9C7F7 /* DatabaseManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45A69352C06611800B9C7F7 /* DatabaseManagerTest.swift */; };
@@ -134,7 +133,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4171F732BF8CAEB00313062 /* SDWebImage in Frameworks */,
 				C4171F762BF8CB0400313062 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,7 +412,6 @@
 			);
 			name = SportsApp;
 			packageProductDependencies = (
-				C4171F722BF8CAEB00313062 /* SDWebImage */,
 				C4171F752BF8CB0400313062 /* Reachability */,
 			);
 			productName = SportsApp;
@@ -490,7 +487,6 @@
 			);
 			mainGroup = C4171F322BF8CAC000313062;
 			packageReferences = (
-				C4171F712BF8CAEB00313062 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = C4171F3C2BF8CAC000313062 /* Products */;
@@ -914,14 +910,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C4171F712BF8CAEB00313062 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.0;
-			};
-		};
 		C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
@@ -933,11 +921,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C4171F722BF8CAEB00313062 /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4171F712BF8CAEB00313062 /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
 		C4171F752BF8CB0400313062 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */;
