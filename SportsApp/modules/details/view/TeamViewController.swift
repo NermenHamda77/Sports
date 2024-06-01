@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var coachName: UILabel!
@@ -55,11 +54,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         teamName.text = viewModel.teamName
         coachName.text = viewModel.coachName
         
-        if let url = viewModel.teamImageURL {
-            teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
-            teamImage.layer.cornerRadius = 50.0
-            teamImage.layer.masksToBounds = true
-        }
+        
         
         // Set sportImage based on backgroundImage
         switch sportName {
@@ -102,11 +97,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.playerName.text = player.player_name
         cell.playerPosition.text = player.player_type ?? "No Available Data"
         cell.playerNumber.text = player.player_number ?? "No Available Data"
-        if let imageUrl = URL(string: player.player_image ?? "") {
-            cell.playerImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeholder"))
-        } else {
-            cell.playerImage.image = UIImage(named: "placeholder")
-        }
+        
         
         return cell
     }

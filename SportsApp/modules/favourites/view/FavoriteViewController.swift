@@ -7,7 +7,7 @@
 
 import UIKit
 import Reachability
-import SDWebImage
+
 
 class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -82,12 +82,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         let league = favViewModel.getFavoriteLeague(at: indexPath.row)
         cell.favLeagueName.text = league.leagueName
 
-        if let url = URL(string: league.leagueLogo) {
-            cell.favLeagueImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defultImage"), options: .continueInBackground, completed: nil)
-        } else {
-            cell.favLeagueImage.image = UIImage(named: "defultImage")
-        }
-
+        
         cell.layer.cornerRadius = 6.0
         cell.layer.masksToBounds = true
         cell.favLeagueImage.layer.cornerRadius = 35.0
