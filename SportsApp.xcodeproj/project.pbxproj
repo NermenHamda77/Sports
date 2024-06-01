@@ -126,7 +126,7 @@
 		E3E40F552BF8F33700B2F7BB /* LeagueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagueViewController.swift; path = legue/view/LeagueViewController.swift; sourceTree = SOURCE_ROOT; };
 		E3E40F592BF8F3A600B2F7BB /* SportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportModel.swift; sourceTree = SOURCE_ROOT; };
 		E3E40F5B2BF8F3CE00B2F7BB /* LeagueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagueViewModel.swift; path = legue/viewModel/LeagueViewModel.swift; sourceTree = SOURCE_ROOT; };
-		E3E40F5D2BF8FBA700B2F7BB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = SOURCE_ROOT; };
+		E3E40F5D2BF8FBA700B2F7BB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		E3E40F5F2BF90E9000B2F7BB /* LeagueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagueTableViewCell.swift; path = legue/view/LeagueTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -135,11 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				C4C6762D2C0B245200BD485E /* Kingfisher in Frameworks */,
 				C4C6762A2C0B1A5C00BD485E /* Alamofire in Frameworks */,
-
-
 				C4171F762BF8CB0400313062 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -922,7 +919,6 @@
 
 /* Begin XCRemoteSwiftPackageReference section */
 		C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */ = {
-
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -931,8 +927,6 @@
 			};
 		};
 		C4C676282C0B1A5C00BD485E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-
-
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
