@@ -33,7 +33,10 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var leagueTableView: UITableView!
     var chosenSportName: String? // Variable to receive the chosen sport name
-
+    var chosenLeagueName: String?
+    var chosenLeagueLogo: String?
+    var chosenLeagueKey: Int?
+    var chosenleagueIndex  : Int?
     private var leaguesViewModel = LeaguesViewModel()
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +51,17 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         // Set the selected sport type and league ID
         let selectedLeague = leaguesViewModel.leaguesResult[indexPath.row]
+        chosenLeagueName = selectedLeague.leagueName
+        chosenLeagueLogo = selectedLeague.leagueLogo
+        chosenLeagueKey = selectedLeague.leagueKey
+        chosenleagueIndex = indexPath.row
+
+     
+        leagueDetailsVC.sportName = chosenSportName
+        leagueDetailsVC.leagueName2 = chosenLeagueName
+        leagueDetailsVC.leagueKey2 = chosenLeagueKey
+        leagueDetailsVC.leagueLogo2 = chosenLeagueLogo
+        leagueDetailsVC.leagueIndex = chosenleagueIndex
         leagueDetailsVC.sportName = chosenSportName
         leagueDetailsVC.leagueId = selectedLeague.leagueKey
 

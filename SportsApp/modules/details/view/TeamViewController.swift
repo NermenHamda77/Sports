@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SDWebImage
+import Kingfisher
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var coachName: UILabel!
@@ -56,7 +56,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         coachName.text = viewModel.coachName
         
         if let url = viewModel.teamImageURL {
-            teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+            teamImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
             teamImage.layer.cornerRadius = 50.0
             teamImage.layer.masksToBounds = true
         }
@@ -103,7 +103,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.playerPosition.text = player.player_type ?? "No Available Data"
         cell.playerNumber.text = player.player_number ?? "No Available Data"
         if let imageUrl = URL(string: player.player_image ?? "") {
-            cell.playerImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeholder"))
+            cell.playerImage.kf.setImage(with: imageUrl, placeholder: UIImage(named: "placeholder"))
         } else {
             cell.playerImage.image = UIImage(named: "placeholder")
         }

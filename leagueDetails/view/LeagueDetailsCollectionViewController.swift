@@ -13,10 +13,32 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
     var leagueId: Int?
     var indicator: UIActivityIndicatorView?
     var viewModel = LeaguesDetailsViewModel()
-
+    
+    var leagueName2: String?
+    var leagueLogo2: String?
+    var leagueKey2: Int?
+    var isHeartFilled = false
+    var heartButton: UIBarButtonItem?
+    var leagueIndex : Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
+          heartButton = UIBarButtonItem(image: UIImage(systemName: isHeartFilled ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(heartButtonTapped))
+          navigationItem.rightBarButtonItem = heartButton
+
+          
+          if let leagueId = leagueId {
+              isHeartFilled = viewModel.isLeagueFavorite(leagueKey: leagueId)
+              heartButton?.image = UIImage(systemName: isHeartFilled ? "heart.fill" : "heart")
+              heartButton?.tintColor = isHeartFilled ? .red : .gray
+          }
+
+
+         if let leagueId = leagueId {
+                     isHeartFilled = viewModel.isLeagueFavorite(leagueKey: leagueId)
+                     updateHeartButtonState()
+                 }
+         
         // Initialize and configure the activity indicator
         indicator = UIActivityIndicatorView(style: .medium)
         indicator?.center = view.center
@@ -79,6 +101,33 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
             viewModel.getTeams(sportType: sportName, leagueId: leagueId)
         }
     }
+    
+    @objc private func heartButtonTapped() {
+            guard let leagueId = leagueId, let sportName = sportName else { return }
+
+            if isHeartFilled {
+                // Remove from favorites
+                viewModel.removeLeagueFromFavorites(leagueKey: leagueId)
+            } else {
+                // Add to favorites
+                let leagueName = leagueName2 ?? "no league name"
+                let leagueLogo = leagueLogo2 ?? "Placeholder Logo"
+                viewModel.addLeagueToFavorites(leagueKey: leagueId, leagueName: leagueName, leagueLogo: leagueLogo, sportName: sportName)
+            }
+
+            // Toggle the heart button state
+            isHeartFilled.toggle()
+            heartButton?.image = UIImage(systemName: isHeartFilled ? "heart.fill" : "heart")
+            heartButton?.tintColor = isHeartFilled ? .red : .gray
+        }
+
+
+      private func updateHeartButtonState() {
+          isHeartFilled = viewModel.isLeagueFavorite(leagueKey: leagueId!)
+          heartButton?.image = UIImage(systemName: isHeartFilled ? "heart.fill" : "heart")
+          heartButton?.tintColor = isHeartFilled ? .red : .gray
+      }
+
 
     func drawTheTopSection(withHeader header: NSCollectionLayoutBoundarySupplementaryItem) -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))

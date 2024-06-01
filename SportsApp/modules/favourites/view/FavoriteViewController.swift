@@ -7,7 +7,7 @@
 
 import UIKit
 import Reachability
-import SDWebImage
+import Kingfisher
 
 class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -83,7 +83,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         cell.favLeagueName.text = league.leagueName
 
         if let url = URL(string: league.leagueLogo) {
-            cell.favLeagueImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defultImage"), options: .continueInBackground, completed: nil)
+            cell.favLeagueImage.kf.setImage(with: url, placeholder: UIImage(named: "defultImage"))
         } else {
             cell.favLeagueImage.image = UIImage(named: "defultImage")
         }
