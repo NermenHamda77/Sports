@@ -51,6 +51,7 @@
 		E3805CA52BFBBE340041CEF2 /* LeaguesDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3805CA42BFBBE340041CEF2 /* LeaguesDetailsModel.swift */; };
 		E385025B2C00E8130045E170 /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385025A2C00E8130045E170 /* TeamsCollectionViewCell.swift */; };
 		E385025D2C01EA420045E170 /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385025C2C01EA420045E170 /* Headers.swift */; };
+		E38AC7C72C0A198900859A05 /* leguesDetailsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38AC7C62C0A198800859A05 /* leguesDetailsViewModelTest.swift */; };
 		E3E40F562BF8F33700B2F7BB /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E40F552BF8F33700B2F7BB /* LeagueViewController.swift */; };
 		E3E40F5A2BF8F3A600B2F7BB /* SportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E40F592BF8F3A600B2F7BB /* SportModel.swift */; };
 		E3E40F5C2BF8F3CE00B2F7BB /* LeagueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E40F5B2BF8F3CE00B2F7BB /* LeagueViewModel.swift */; };
@@ -121,6 +122,7 @@
 		E3805CA42BFBBE340041CEF2 /* LeaguesDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeaguesDetailsModel.swift; path = leagueDetails/view/LeaguesDetailsModel.swift; sourceTree = SOURCE_ROOT; };
 		E385025A2C00E8130045E170 /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamsCollectionViewCell.swift; path = leagueDetails/view/TeamsCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		E385025C2C01EA420045E170 /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Headers.swift; path = leagueDetails/view/Headers.swift; sourceTree = SOURCE_ROOT; };
+		E38AC7C62C0A198800859A05 /* leguesDetailsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leguesDetailsViewModelTest.swift; sourceTree = "<group>"; };
 		E3E40F552BF8F33700B2F7BB /* LeagueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagueViewController.swift; path = legue/view/LeagueViewController.swift; sourceTree = SOURCE_ROOT; };
 		E3E40F592BF8F3A600B2F7BB /* SportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportModel.swift; sourceTree = SOURCE_ROOT; };
 		E3E40F5B2BF8F3CE00B2F7BB /* LeagueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagueViewModel.swift; path = legue/viewModel/LeagueViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -133,8 +135,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				C4C6762D2C0B245200BD485E /* Kingfisher in Frameworks */,
 				C4C6762A2C0B1A5C00BD485E /* Alamofire in Frameworks */,
+
+
 				C4171F762BF8CB0400313062 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +207,7 @@
 				E37F94602C05EED0000A156A /* MockNetworkService.swift */,
 				E37F94622C05F1FD000A156A /* MockNetworkServiceTest.swift */,
 				C45A69352C06611800B9C7F7 /* DatabaseManagerTest.swift */,
+				E38AC7C62C0A198800859A05 /* leguesDetailsViewModelTest.swift */,
 			);
 			path = SportsAppTests;
 			sourceTree = "<group>";
@@ -585,6 +591,7 @@
 				E37F94612C05EED0000A156A /* MockNetworkService.swift in Sources */,
 				E37F94632C05F1FD000A156A /* MockNetworkServiceTest.swift in Sources */,
 				C4C7C8F62C04C6DE00DF9318 /* NetworkServiceTest.swift in Sources */,
+				E38AC7C72C0A198900859A05 /* leguesDetailsViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,6 +922,7 @@
 
 /* Begin XCRemoteSwiftPackageReference section */
 		C4171F742BF8CB0400313062 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -923,6 +931,8 @@
 			};
 		};
 		C4C676282C0B1A5C00BD485E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+
+
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {

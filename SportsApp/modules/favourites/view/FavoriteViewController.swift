@@ -7,7 +7,11 @@
 
 import UIKit
 import Reachability
+
 import Kingfisher
+
+
+
 
 class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -82,11 +86,15 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         let league = favViewModel.getFavoriteLeague(at: indexPath.row)
         cell.favLeagueName.text = league.leagueName
 
+
         if let url = URL(string: league.leagueLogo) {
             cell.favLeagueImage.kf.setImage(with: url, placeholder: UIImage(named: "defultImage"))
         } else {
             cell.favLeagueImage.image = UIImage(named: "defultImage")
         }
+
+
+        
 
         cell.layer.cornerRadius = 6.0
         cell.layer.masksToBounds = true
