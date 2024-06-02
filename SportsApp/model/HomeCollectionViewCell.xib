@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeCollectionViewCell" customModule="SportsApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCell" id="bty-ax-Xyf" customClass="HomeCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="605" height="605"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="605" height="605"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zX-V0-ClB">
+                        <rect key="frame" x="0.0" y="0.0" width="605" height="605"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DRZ-Rp-dmq">
+                                <rect key="frame" x="4" y="8" width="597" height="589"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BasketBall" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnr-Eb-pqk">
+                                <rect key="frame" x="46.666666666666686" y="243.66666666666666" width="512" height="117.66666666666666"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DRZ-Rp-dmq" secondAttribute="trailing" constant="4" id="01M-gu-WUo"/>
+                            <constraint firstItem="nnr-Eb-pqk" firstAttribute="height" secondItem="DRZ-Rp-dmq" secondAttribute="height" multiplier="0.2" id="1PJ-XR-tce"/>
+                            <constraint firstAttribute="bottom" secondItem="DRZ-Rp-dmq" secondAttribute="bottom" constant="8" id="9GI-kw-sx7"/>
+                            <constraint firstItem="nnr-Eb-pqk" firstAttribute="width" secondItem="DRZ-Rp-dmq" secondAttribute="width" multiplier="0.857621" id="ABx-6a-2MB"/>
+                            <constraint firstItem="DRZ-Rp-dmq" firstAttribute="leading" secondItem="6zX-V0-ClB" secondAttribute="leading" constant="4" id="DA5-wr-3C7"/>
+                            <constraint firstItem="DRZ-Rp-dmq" firstAttribute="top" secondItem="6zX-V0-ClB" secondAttribute="top" constant="8" id="pCx-n5-JZN"/>
+                            <constraint firstItem="nnr-Eb-pqk" firstAttribute="centerY" secondItem="DRZ-Rp-dmq" secondAttribute="centerY" id="u1v-yt-vZh"/>
+                            <constraint firstItem="nnr-Eb-pqk" firstAttribute="centerX" secondItem="DRZ-Rp-dmq" secondAttribute="centerX" id="zpo-xB-wYR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="0xH-Tu-Au4"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="6zX-V0-ClB" secondAttribute="bottom" id="H7t-Qh-yG3"/>
+                <constraint firstItem="6zX-V0-ClB" firstAttribute="top" secondItem="bty-ax-Xyf" secondAttribute="top" id="MQA-oB-LWf"/>
+                <constraint firstAttribute="trailing" secondItem="6zX-V0-ClB" secondAttribute="trailing" id="Tdz-an-Bs1"/>
+                <constraint firstItem="6zX-V0-ClB" firstAttribute="leading" secondItem="bty-ax-Xyf" secondAttribute="leading" id="ljo-vd-Eh7"/>
+            </constraints>
+            <size key="customSize" width="823" height="692"/>
+            <connections>
+                <outlet property="sportImage" destination="DRZ-Rp-dmq" id="yEC-il-ryX"/>
+                <outlet property="sportName" destination="nnr-Eb-pqk" id="Ugx-1J-RX3"/>
+            </connections>
+            <point key="canvasLocation" x="469.46564885496178" y="133.45070422535213"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
